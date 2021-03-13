@@ -21,7 +21,7 @@ if ( force_ssl_admin() && ! is_ssl() ) {
 		exit;
 	}
 }
-
+if ( ! function_exists( 'login_header' ) ) {
 /**
  * Output the login page header.
  *
@@ -265,7 +265,8 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 		}
 	}
 } // End of login_header().
-
+}
+if ( ! function_exists( 'login_footer' ) ) {
 /**
  * Outputs the footer for the login page.
  *
@@ -335,7 +336,8 @@ function login_footer( $input_id = '' ) {
 	</html>
 	<?php
 }
-
+}
+if ( ! function_exists( 'wp_shake_js' ) ) {
 /**
  * Outputs the JavaScript to handle the form shaking on the login page.
  *
@@ -348,7 +350,8 @@ function wp_shake_js() {
 	</script>
 	<?php
 }
-
+}
+if ( ! function_exists( 'wp_login_viewport_meta' ) ) {
 /**
  * Outputs the viewport meta tag for the login page.
  *
@@ -359,7 +362,7 @@ function wp_login_viewport_meta() {
 	<meta name="viewport" content="width=device-width" />
 	<?php
 }
-
+}
 //
 // Main.
 //
