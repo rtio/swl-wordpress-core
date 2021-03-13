@@ -48,7 +48,7 @@ $parent_file = apply_filters( 'parent_file', $parent_file );
 $submenu_file = apply_filters( 'submenu_file', $submenu_file, $parent_file );
 
 get_admin_page_parent();
-
+if ( ! function_exists( '_wp_menu_output' ) ) {
 /**
  * Display menu.
  *
@@ -280,7 +280,7 @@ function _wp_menu_output( $menu, $submenu, $submenu_as_parent = true ) {
 		'<span class="collapse-button-label">' . __( 'Collapse menu' ) . '</span>' .
 		'</button></li>';
 }
-
+}
 ?>
 
 <div id="adminmenumain" role="navigation" aria-label="<?php esc_attr_e( 'Main menu' ); ?>">
