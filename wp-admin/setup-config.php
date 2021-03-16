@@ -300,8 +300,9 @@ switch ( $step ) {
 		/**#@-*/
 
 		// Re-construct $wpdb with these new values.
-		unset( $wpdb );
+		unset( $GLOBALS['wpdb'] );
 		require_wp_db();
+		$wpdb = $GLOBALS['wpdb'];
 
 		/*
 		* The wpdb constructor bails when WP_SETUP_CONFIG is set, so we must
