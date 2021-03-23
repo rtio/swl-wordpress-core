@@ -636,7 +636,7 @@ class WP_Customize_Control {
 						<input type="text" id="create-input-<?php echo $this->id; ?>" class="create-item-input" placeholder="<?php esc_attr_e( 'New page title&hellip;' ); ?>">
 						<button type="button" class="button add-content"><?php _e( 'Add' ); ?></button>
 					</div>
-				<?php endif; ?>
+<?php endif; ?>
 				<?php
 				break;
 			default:

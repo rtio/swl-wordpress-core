@@ -82,7 +82,7 @@ if ( $has_footer_menu || $has_social_menu || $has_sidebar_1 || $has_sidebar_2 ) 
 					<?php } ?>
 				</div><!-- .footer-top -->
 
-			<?php } ?>
+<?php } ?>
 
 			<?php if ( $has_sidebar_1 || $has_sidebar_2 ) { ?>
 

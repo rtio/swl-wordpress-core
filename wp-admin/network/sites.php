@@ -98,7 +98,7 @@ if ( isset( $_GET['action'] ) ) {
 
 		if ( ! headers_sent() ) {
 			nocache_headers();
-			header( 'Content-Type: text/html; charset=utf-8' );
+			wp_header( 'Content-Type: text/html; charset=utf-8' );
 		}
 
 		if ( get_network()->site_id == $id ) {
@@ -123,7 +123,7 @@ if ( isset( $_GET['action'] ) ) {
 			</div>
 		<?php
 		require_once ABSPATH . 'wp-admin/admin-footer.php';
-		exit;
+		wp_exit();
 	} elseif ( array_key_exists( $_GET['action'], $manage_actions ) ) {
 		$action = $_GET['action'];
 		check_admin_referer( $action . '_' . $id );
@@ -210,7 +210,7 @@ if ( isset( $_GET['action'] ) ) {
 								</div>
 								<?php
 								require_once ABSPATH . 'wp-admin/admin-footer.php';
-								exit;
+								wp_exit();
 							break;
 
 							case 'spam':
@@ -232,7 +232,7 @@ if ( isset( $_GET['action'] ) ) {
 					$redirect_to = apply_filters( 'handle_network_bulk_actions-' . get_current_screen()->id, $redirect_to, $doaction, $blogs, $id ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 					wp_safe_redirect( $redirect_to );
-					exit;
+					wp_exit();
 				}
 			} else {
 				// Process query defined by WP_MS_Site_List_Table::extra_table_nav().
@@ -242,7 +242,7 @@ if ( isset( $_GET['action'] ) ) {
 				);
 
 				wp_redirect( $location );
-				exit;
+				wp_exit();
 			}
 
 			break;
@@ -295,7 +295,7 @@ if ( isset( $_GET['action'] ) ) {
 
 	if ( ! empty( $updated_action ) ) {
 		wp_safe_redirect( add_query_arg( array( 'updated' => $updated_action ), wp_get_referer() ) );
-		exit;
+		wp_exit();
 	}
 }
 

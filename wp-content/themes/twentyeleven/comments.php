@@ -54,7 +54,7 @@
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'twentyeleven' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'twentyeleven' ) ); ?></div>
 		</nav>
-		<?php endif; // Check for comment navigation. ?>
+<?php endif; // Check for comment navigation. ?>
 
 		<ol class="commentlist">
 			<?php
@@ -75,7 +75,7 @@
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'twentyeleven' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'twentyeleven' ) ); ?></div>
 		</nav>
-		<?php endif; // Check for comment navigation. ?>
+<?php endif; // Check for comment navigation. ?>
 
 		<?php
 		/*
@@ -87,7 +87,7 @@
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'twentyeleven' ); ?></p>
 		<?php endif; ?>
 
-	<?php endif; // have_comments() ?>
+<?php endif; // have_comments() ?>
 
 	<?php comment_form(); ?>
 

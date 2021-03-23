@@ -89,7 +89,7 @@ if ( $comments ) {
 					<?php echo wp_kses_post( $comment_pagination ); ?>
 				</nav>
 
-				<?php
+<?php
 			}
 			?>
 

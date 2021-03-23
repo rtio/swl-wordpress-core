@@ -14,7 +14,7 @@
 
 require_once __DIR__ . '/wp-load.php';
 
-header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+wp_header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
 $link_cat = '';
 if ( ! empty( $_GET['link_cat'] ) ) {
 	$link_cat = $_GET['link_cat'];
@@ -90,7 +90,7 @@ foreach ( (array) $cats as $cat ) :
 	endforeach; // $bookmarks
 	?>
 </outline>
-	<?php
+<?php
 endforeach; // $cats
 ?>
 </body>

@@ -17,7 +17,7 @@ _deprecated_file(
 
 // Do not delete these lines.
 if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && 'comments.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
-	die( 'Please do not load this page directly. Thanks!' );
+	wp_exit( 'Please do not load this page directly. Thanks!' );
 }
 
 if ( post_password_required() ) { ?>
@@ -71,7 +71,7 @@ if ( post_password_required() ) { ?>
 		<!-- If comments are closed. -->
 		<p class="nocomments"><?php _e( 'Comments are closed.' ); ?></p>
 
-	<?php endif; ?>
+<?php endif; ?>
 <?php endif; ?>
 
 <?php comment_form(); ?>

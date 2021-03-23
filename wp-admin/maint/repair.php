@@ -9,7 +9,7 @@ define( 'WP_REPAIRING', true );
 
 require_once dirname( dirname( __DIR__ ) ) . '/wp-load.php';
 
-header( 'Content-Type: text/html; charset=utf-8' );
+wp_header( 'Content-Type: text/html; charset=utf-8' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

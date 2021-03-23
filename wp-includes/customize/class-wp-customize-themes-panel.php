@@ -99,6 +99,6 @@ class WP_Customize_Themes_Panel extends WP_Customize_Panel {
 				<div class="customize-themes-notifications"></div>
 			</div>
 		</li>
-		<?php
+<?php
 	}
 }

@@ -8,7 +8,7 @@
 
 // Don't load directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
+	wp_exit( '-1' );
 }
 ?>
 <form name="post" action="comment.php" method="post" id="post">

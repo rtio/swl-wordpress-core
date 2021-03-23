@@ -654,7 +654,7 @@ final class WP_Customize_Manager {
 		$doing_ajax_or_is_customized = ( $this->doing_ajax() || isset( $_POST['customized'] ) );
 		if ( ! $doing_ajax_or_is_customized && ! validate_current_theme() ) {
 			wp_redirect( 'themes.php?broken=true' );
-			exit;
+			wp_exit();
 		}
 	}
 
@@ -1898,7 +1898,7 @@ final class WP_Customize_Manager {
 		 */
 		if ( ! headers_sent() ) {
 			nocache_headers();
-			header( 'X-Robots: noindex, nofollow, noarchive' );
+			wp_header( 'X-Robots: noindex, nofollow, noarchive' );
 		}
 		add_filter( 'wp_robots', 'wp_robots_no_robots' );
 		add_filter( 'wp_headers', array( $this, 'filter_iframe_security_headers' ) );
@@ -4362,7 +4362,7 @@ final class WP_Customize_Manager {
 				</span>
 			<# } ); #>
 		</script>
-		<?php
+<?php
 	}
 
 	/**

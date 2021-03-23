@@ -56,7 +56,7 @@ $step = isset( $_GET['step'] ) ? (int) $_GET['step'] : 0;
  * @param string $body_classes
  */
 function display_header( $body_classes = '' ) {
-	header( 'Content-Type: text/html; charset=utf-8' );
+	wp_header( 'Content-Type: text/html; charset=utf-8' );
 	if ( is_rtl() ) {
 		$body_classes .= 'rtl';
 	}
@@ -172,7 +172,7 @@ function display_setup_form( $error = null ) {
 				</label>
 			</td>
 		</tr>
-		<?php endif; ?>
+<?php endif; ?>
 		<tr>
 			<th scope="row"><label for="admin_email"><?php _e( 'Your Email' ); ?></label></th>
 			<td><input name="admin_email" type="email" id="admin_email" size="25" value="<?php echo esc_attr( $admin_email ); ?>" />
@@ -213,12 +213,10 @@ function display_setup_form( $error = null ) {
 // Let's check to make sure WP isn't already installed.
 if ( is_blog_installed() ) {
 	display_header();
-	die(
-		'<h1>' . __( 'Already Installed' ) . '</h1>' .
+	wp_exit('<h1>' . __( 'Already Installed' ) . '</h1>' .
 		'<p>' . __( 'You appear to have already installed WordPress. To reinstall please clear your old database tables first.' ) . '</p>' .
 		'<p class="step"><a href="' . esc_url( wp_login_url() ) . '" class="button button-large">' . __( 'Log In' ) . '</a></p>' .
-		'</body></html>'
-	);
+		'</body></html>');
 }
 
 /**
@@ -284,32 +282,28 @@ if ( ! $mysql_compat && ! $php_compat ) {
 
 if ( ! $mysql_compat || ! $php_compat ) {
 	display_header();
-	die( '<h1>' . __( 'Requirements Not Met' ) . '</h1><p>' . $compat . '</p></body></html>' );
+	wp_exit( '<h1>' . __( 'Requirements Not Met' ) . '</h1><p>' . $compat . '</p></body></html>' );
 }
 
 if ( ! is_string( $wpdb->base_prefix ) || '' === $wpdb->base_prefix ) {
 	display_header();
-	die(
-		'<h1>' . __( 'Configuration Error' ) . '</h1>' .
+	wp_exit('<h1>' . __( 'Configuration Error' ) . '</h1>' .
 		'<p>' . sprintf(
 			/* translators: %s: wp-config.php */
 			__( 'Your %s file has an empty database table prefix, which is not supported.' ),
 			'<code>wp-config.php</code>'
-		) . '</p></body></html>'
-	);
+		) . '</p></body></html>');
 }
 
 // Set error message if DO_NOT_UPGRADE_GLOBAL_TABLES isn't set as it will break install.
 if ( defined( 'DO_NOT_UPGRADE_GLOBAL_TABLES' ) ) {
 	display_header();
-	die(
-		'<h1>' . __( 'Configuration Error' ) . '</h1>' .
+	wp_exit('<h1>' . __( 'Configuration Error' ) . '</h1>' .
 		'<p>' . sprintf(
 			/* translators: %s: DO_NOT_UPGRADE_GLOBAL_TABLES */
 			__( 'The constant %s cannot be defined when installing WordPress.' ),
 			'<code>DO_NOT_UPGRADE_GLOBAL_TABLES</code>'
-		) . '</p></body></html>'
-	);
+		) . '</p></body></html>');
 }
 
 /**

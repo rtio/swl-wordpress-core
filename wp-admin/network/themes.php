@@ -44,32 +44,32 @@ if ( $action ) {
 			} else {
 				wp_safe_redirect( add_query_arg( 'enabled', 1, $referer ) );
 			}
-			exit;
+			wp_exit();
 		case 'disable':
 			check_admin_referer( 'disable-theme_' . $_GET['theme'] );
 			WP_Theme::network_disable_theme( $_GET['theme'] );
 			wp_safe_redirect( add_query_arg( 'disabled', '1', $referer ) );
-			exit;
+			wp_exit();
 		case 'enable-selected':
 			check_admin_referer( 'bulk-themes' );
 			$themes = isset( $_POST['checked'] ) ? (array) $_POST['checked'] : array();
 			if ( empty( $themes ) ) {
 				wp_safe_redirect( add_query_arg( 'error', 'none', $referer ) );
-				exit;
+				wp_exit();
 			}
 			WP_Theme::network_enable_theme( (array) $themes );
 			wp_safe_redirect( add_query_arg( 'enabled', count( $themes ), $referer ) );
-			exit;
+			wp_exit();
 		case 'disable-selected':
 			check_admin_referer( 'bulk-themes' );
 			$themes = isset( $_POST['checked'] ) ? (array) $_POST['checked'] : array();
 			if ( empty( $themes ) ) {
 				wp_safe_redirect( add_query_arg( 'error', 'none', $referer ) );
-				exit;
+				wp_exit();
 			}
 			WP_Theme::network_disable_theme( (array) $themes );
 			wp_safe_redirect( add_query_arg( 'disabled', count( $themes ), $referer ) );
-			exit;
+			wp_exit();
 		case 'update-selected':
 			check_admin_referer( 'bulk-themes' );
 
@@ -95,7 +95,7 @@ if ( $action ) {
 			echo "<iframe src='$url' style='width: 100%; height:100%; min-height:850px;'></iframe>";
 			echo '</div>';
 			require_once ABSPATH . 'wp-admin/admin-footer.php';
-			exit;
+			wp_exit();
 		case 'delete-selected':
 			if ( ! current_user_can( 'delete_themes' ) ) {
 				wp_die( __( 'Sorry, you are not allowed to delete themes for this site.' ) );
@@ -107,14 +107,14 @@ if ( $action ) {
 
 			if ( empty( $themes ) ) {
 				wp_safe_redirect( add_query_arg( 'error', 'none', $referer ) );
-				exit;
+				wp_exit();
 			}
 
 			$themes = array_diff( $themes, array( get_option( 'stylesheet' ), get_option( 'template' ) ) );
 
 			if ( empty( $themes ) ) {
 				wp_safe_redirect( add_query_arg( 'error', 'main', $referer ) );
-				exit;
+				wp_exit();
 			}
 
 			$theme_info = array();
@@ -185,7 +185,7 @@ if ( $action ) {
 				<?php
 
 				require_once ABSPATH . 'wp-admin/admin-footer.php';
-				exit;
+				wp_exit();
 			} // End if verify-delete.
 
 			foreach ( $themes as $theme ) {
@@ -216,7 +216,7 @@ if ( $action ) {
 					network_admin_url( 'themes.php' )
 				)
 			);
-			exit;
+			wp_exit();
 		case 'enable-auto-update':
 		case 'disable-auto-update':
 		case 'enable-auto-update-selected':
@@ -231,7 +231,7 @@ if ( $action ) {
 				if ( empty( $_POST['checked'] ) ) {
 					// Nothing to do.
 					wp_safe_redirect( add_query_arg( 'error', 'none', $referer ) );
-					exit;
+					wp_exit();
 				}
 
 				check_admin_referer( 'bulk-themes' );
@@ -268,12 +268,12 @@ if ( $action ) {
 			update_site_option( 'auto_update_themes', $auto_updates );
 
 			wp_safe_redirect( $referer );
-			exit;
+			wp_exit();
 		default:
 			$themes = isset( $_POST['checked'] ) ? (array) $_POST['checked'] : array();
 			if ( empty( $themes ) ) {
 				wp_safe_redirect( add_query_arg( 'error', 'none', $referer ) );
-				exit;
+				wp_exit();
 			}
 			check_admin_referer( 'bulk-themes' );
 
@@ -281,7 +281,7 @@ if ( $action ) {
 			$referer = apply_filters( 'handle_network_bulk_actions-' . get_current_screen()->id, $referer, $action, $themes ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 			wp_safe_redirect( $referer );
-			exit;
+			wp_exit();
 	}
 }
 

@@ -25,7 +25,7 @@ function wp_image_editor( $post_id, $msg = false ) {
 	if ( isset( $meta['width'], $meta['height'] ) ) {
 		$big = max( $meta['width'], $meta['height'] );
 	} else {
-		die( __( 'Image data does not exist. Please re-upload the image.' ) );
+		wp_exit( __( 'Image data does not exist. Please re-upload the image.' ) );
 	}
 
 	$sizer = $big > 400 ? 400 / $big : 1;
@@ -298,13 +298,13 @@ function wp_stream_image( $image, $mime_type, $attachment_id ) {
 
 		switch ( $mime_type ) {
 			case 'image/jpeg':
-				header( 'Content-Type: image/jpeg' );
+				wp_header( 'Content-Type: image/jpeg' );
 				return imagejpeg( $image, null, 90 );
 			case 'image/png':
-				header( 'Content-Type: image/png' );
+				wp_header( 'Content-Type: image/png' );
 				return imagepng( $image );
 			case 'image/gif':
-				header( 'Content-Type: image/gif' );
+				wp_header( 'Content-Type: image/gif' );
 				return imagegif( $image );
 			default:
 				return false;

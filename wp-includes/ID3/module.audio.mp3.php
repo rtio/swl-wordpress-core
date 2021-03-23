@@ -15,7 +15,7 @@
 /////////////////////////////////////////////////////////////////
 
 if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
-	exit;
+	wp_exit();
 }
 
 // number of frames to scan to determine if MPEG-audio sequence is valid

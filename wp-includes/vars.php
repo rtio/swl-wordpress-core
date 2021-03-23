@@ -79,7 +79,7 @@ if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
 			 */
 			$is_chrome = apply_filters( 'use_google_chrome_frame', $is_admin );
 			if ( $is_chrome ) {
-				header( 'X-UA-Compatible: chrome=1' );
+				wp_header( 'X-UA-Compatible: chrome=1' );
 			}
 			$is_winIE = ! $is_chrome;
 		} else {

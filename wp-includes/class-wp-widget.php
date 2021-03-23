@@ -110,7 +110,7 @@ class WP_Widget {
 	 * @param array $instance The settings for the particular instance of the widget.
 	 */
 	public function widget( $args, $instance ) {
-		die( 'function WP_Widget::widget() must be overridden in a subclass.' );
+		wp_exit( 'function WP_Widget::widget() must be overridden in a subclass.' );
 	}
 
 	/**

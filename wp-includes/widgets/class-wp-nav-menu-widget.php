@@ -196,6 +196,6 @@ class WP_Nav_Menu_Widget extends WP_Widget {
 				</p>
 			<?php endif; ?>
 		</div>
-		<?php
+<?php
 	}
 }

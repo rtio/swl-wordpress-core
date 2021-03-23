@@ -76,8 +76,8 @@ if ( ! isset( $current_site ) || ! isset( $current_blog ) ) {
 	} elseif ( false === $bootstrap_result ) {
 		ms_not_installed( $domain, $path );
 	} else {
-		header( 'Location: ' . $bootstrap_result );
-		exit;
+		wp_header( 'Location: ' . $bootstrap_result );
+		wp_exit();
 	}
 	unset( $bootstrap_result );
 

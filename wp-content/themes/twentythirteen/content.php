@@ -36,7 +36,7 @@
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
-	<?php else : ?>
+<?php else : ?>
 	<div class="entry-content">
 		<?php
 			the_content(

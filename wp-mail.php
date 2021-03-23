@@ -251,7 +251,7 @@ for ( $i = 1; $i <= $count; $i++ ) {
 			esc_html( $pop3->ERROR )
 		) . '</p>';
 		$pop3->reset();
-		exit;
+		wp_exit();
 	} else {
 		echo '<p>' . sprintf(
 			/* translators: %s: The message ID. */

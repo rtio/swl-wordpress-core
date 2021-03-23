@@ -21,15 +21,15 @@ ignore_user_abort( true );
 /* Don't make the request block till we finish, if possible. */
 if ( function_exists( 'fastcgi_finish_request' ) && version_compare( phpversion(), '7.0.16', '>=' ) ) {
 	if ( ! headers_sent() ) {
-		header( 'Expires: Wed, 11 Jan 1984 05:00:00 GMT' );
-		header( 'Cache-Control: no-cache, must-revalidate, max-age=0' );
+		wp_header( 'Expires: Wed, 11 Jan 1984 05:00:00 GMT' );
+		wp_header( 'Cache-Control: no-cache, must-revalidate, max-age=0' );
 	}
 
 	fastcgi_finish_request();
 }
 
 if ( ! empty( $_POST ) || defined( 'DOING_AJAX' ) || defined( 'DOING_CRON' ) ) {
-	die();
+	wp_exit();
 }
 
 /**
@@ -78,7 +78,7 @@ function _get_cron_lock() {
 
 $crons = wp_get_ready_cron_jobs();
 if ( empty( $crons ) ) {
-	die();
+	wp_exit();
 }
 
 $gmt_time = microtime( true );
@@ -149,4 +149,4 @@ if ( _get_cron_lock() === $doing_wp_cron ) {
 	delete_transient( 'doing_cron' );
 }
 
-die();
+wp_exit();

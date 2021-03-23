@@ -86,7 +86,7 @@ $credits = wp_credits();
 if ( ! $credits ) {
 	echo '</div>';
 	require_once ABSPATH . 'wp-admin/admin-footer.php';
-	exit;
+	wp_exit();
 }
 ?>
 

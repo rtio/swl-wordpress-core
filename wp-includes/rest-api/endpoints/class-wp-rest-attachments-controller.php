@@ -196,7 +196,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 			// Set a custom header with the attachment_id.
 			// Used by the browser/client to resume creating image sub-sizes after a PHP fatal error.
-			header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
+			wp_header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
 		}
 
 		// Include media and image functions to get access to wp_generate_attachment_metadata().
@@ -619,7 +619,7 @@ class WP_REST_Attachments_Controller extends WP_REST_Posts_Controller {
 		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 			// Set a custom header with the attachment_id.
 			// Used by the browser/client to resume creating image sub-sizes after a PHP fatal error.
-			header( 'X-WP-Upload-Attachment-ID: ' . $new_attachment_id );
+			wp_header( 'X-WP-Upload-Attachment-ID: ' . $new_attachment_id );
 		}
 
 		// Generate image sub-sizes and meta.

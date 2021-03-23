@@ -1639,7 +1639,7 @@ class WP_REST_Server {
 		 * message downstream.
 		 */
 		$value = preg_replace( '/\s+/', ' ', $value );
-		header( sprintf( '%s: %s', $key, $value ) );
+		wp_header( sprintf( '%s: %s', $key, $value ) );
 	}
 
 	/**
@@ -1663,7 +1663,7 @@ class WP_REST_Server {
 	 * @param string $key Header key.
 	 */
 	public function remove_header( $key ) {
-		header_remove( $key );
+		wp_header_remove( $key );
 	}
 
 	/**

@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'twentytwelve' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'twentytwelve' ) ); ?></div>
 		</nav>
-		<?php endif; // Check for comment navigation. ?>
+<?php endif; // Check for comment navigation. ?>
 
 		<?php
 		/*
@@ -75,7 +75,7 @@ if ( post_password_required() ) {
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'twentytwelve' ); ?></p>
 		<?php endif; ?>
 
-	<?php endif; // have_comments() ?>
+<?php endif; // have_comments() ?>
 
 	<?php comment_form(); ?>
 

@@ -162,7 +162,7 @@ if ( isset( $_POST['savewidget'] ) || isset( $_POST['removewidget'] ) ) {
 
 		if ( ! in_array( $widget_id, $sidebar, true ) ) {
 			wp_redirect( admin_url( 'widgets.php?error=0' ) );
-			exit;
+			wp_exit();
 		}
 
 		$sidebar = array_diff( $sidebar, array( $widget_id ) );
@@ -213,7 +213,7 @@ if ( isset( $_POST['savewidget'] ) || isset( $_POST['removewidget'] ) ) {
 
 	wp_set_sidebars_widgets( $sidebars_widgets );
 	wp_redirect( admin_url( 'widgets.php?message=0' ) );
-	exit;
+	wp_exit();
 }
 
 // Remove inactive widgets without JS.
@@ -235,7 +235,7 @@ if ( isset( $_POST['removeinactivewidgets'] ) ) {
 	}
 
 	wp_redirect( admin_url( 'widgets.php?message=0' ) );
-	exit;
+	wp_exit();
 }
 
 // Output the widget form without JS.
@@ -371,7 +371,7 @@ if ( isset( $_GET['editwidget'] ) && $_GET['editwidget'] ) {
 	</div>
 	<?php
 	require_once ABSPATH . 'wp-admin/admin-footer.php';
-	exit;
+	wp_exit();
 }
 
 $messages = array(

@@ -120,7 +120,7 @@ function network_step1( $errors = false ) {
 		) . '</p></div>';
 		echo '</div>';
 		require_once ABSPATH . 'wp-admin/admin-footer.php';
-		die();
+		wp_exit();
 	}
 
 	$active_plugins = get_option( 'active_plugins' );
@@ -133,7 +133,7 @@ function network_step1( $errors = false ) {
 		echo '<p>' . __( 'Once the network is created, you may reactivate your plugins.' ) . '</p>';
 		echo '</div>';
 		require_once ABSPATH . 'wp-admin/admin-footer.php';
-		die();
+		wp_exit();
 	}
 
 	$hostname  = get_clean_basedomain();
@@ -148,7 +148,7 @@ function network_step1( $errors = false ) {
 		echo '<a href="' . esc_url( admin_url() ) . '">' . __( 'Go to Dashboard' ) . '</a>';
 		echo '</div>';
 		require_once ABSPATH . 'wp-admin/admin-footer.php';
-		die();
+		wp_exit();
 	}
 
 	echo '<form method="post">';
@@ -256,7 +256,7 @@ function network_step1( $errors = false ) {
 			</tr>
 		</table>
 
-		<?php
+<?php
 	endif;
 
 	if ( WP_CONTENT_DIR !== ABSPATH . 'wp-content' && ( allow_subdirectory_install() || ! allow_subdomain_install() ) ) {

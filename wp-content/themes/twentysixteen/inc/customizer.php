@@ -101,7 +101,7 @@ if ( ! function_exists( 'twentysixteen_header_style' ) ) :
 			position: absolute;
 		}
 		</style>
-		<?php
+<?php
 	}
 endif; // twentysixteen_header_style()
 

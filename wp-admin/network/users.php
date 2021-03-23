@@ -39,7 +39,7 @@ if ( isset( $_GET['action'] ) ) {
 			} else {
 				wp_redirect( network_admin_url( 'users.php' ) );
 			}
-			exit;
+			wp_exit();
 
 		case 'allusers':
 			if ( ! current_user_can( 'manage_network_users' ) ) {
@@ -66,7 +66,7 @@ if ( isset( $_GET['action'] ) ) {
 								confirm_delete_users( $_POST['allusers'] );
 								echo '</div>';
 								require_once ABSPATH . 'wp-admin/admin-footer.php';
-								exit;
+								wp_exit();
 
 							case 'spam':
 								$user = get_userdata( $user_id );
@@ -122,7 +122,7 @@ if ( isset( $_GET['action'] ) ) {
 					$sendback = apply_filters( 'handle_network_bulk_actions-' . get_current_screen()->id, $sendback, $doaction, $user_ids ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 					wp_safe_redirect( $sendback );
-					exit;
+					wp_exit();
 				}
 
 				wp_safe_redirect(
@@ -142,7 +142,7 @@ if ( isset( $_GET['action'] ) ) {
 				}
 				wp_redirect( $location );
 			}
-			exit;
+			wp_exit();
 
 		case 'dodelete':
 			check_admin_referer( 'ms-users-delete' );
@@ -193,7 +193,7 @@ if ( isset( $_GET['action'] ) ) {
 					network_admin_url( 'users.php' )
 				)
 			);
-			exit;
+			wp_exit();
 	}
 }
 
@@ -204,7 +204,7 @@ $total_pages = $wp_list_table->get_pagination_arg( 'total_pages' );
 
 if ( $pagenum > $total_pages && $total_pages > 0 ) {
 	wp_redirect( add_query_arg( 'paged', $total_pages ) );
-	exit;
+	wp_exit();
 }
 $title       = __( 'Users' );
 $parent_file = 'users.php';

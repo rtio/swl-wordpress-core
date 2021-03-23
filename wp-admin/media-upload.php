@@ -26,7 +26,7 @@ wp_enqueue_script( 'set-post-thumbnail' );
 wp_enqueue_style( 'imgareaselect' );
 wp_enqueue_script( 'media-gallery' );
 
-header( 'Content-Type: ' . get_option( 'html_type' ) . '; charset=' . get_option( 'blog_charset' ) );
+wp_header( 'Content-Type: ' . get_option( 'html_type' ) . '; charset=' . get_option( 'blog_charset' ) );
 
 // IDs should be integers.
 $ID      = isset( $ID ) ? (int) $ID : 0; // phpcs:ignore WordPress.NamingConventions.ValidVariableName

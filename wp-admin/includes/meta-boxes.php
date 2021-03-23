@@ -276,7 +276,7 @@ function post_submit_meta_box( $post, $args = array() ) {
 					<?php touch_time( ( 'edit' === $action ), 1 ); ?>
 				</fieldset>
 			</div>
-			<?php
+<?php
 		endif;
 
 		if ( 'draft' === $post->post_status && get_post_meta( $post_id, '_customize_changeset_uuid', true ) ) :
@@ -377,7 +377,7 @@ function post_submit_meta_box( $post, $args = array() ) {
 </div>
 
 </div>
-	<?php
+<?php
 }
 
 /**
@@ -457,7 +457,7 @@ function attachment_submit_meta_box( $post ) {
 
 </div>
 
-	<?php
+<?php
 }
 
 /**
@@ -563,7 +563,7 @@ function post_tags_meta_box( $post, $box ) {
 	<?php if ( $user_can_assign_terms ) : ?>
 <p class="hide-if-no-js"><button type="button" class="button-link tagcloud-link" id="link-<?php echo $tax_name; ?>" aria-expanded="false"><?php echo $taxonomy->labels->choose_from_most_used; ?></button></p>
 <?php endif; ?>
-	<?php
+<?php
 }
 
 /**
@@ -709,7 +709,7 @@ function post_excerpt_meta_box( $post ) {
 	);
 	?>
 </p>
-	<?php
+<?php
 }
 
 /**
@@ -819,7 +819,7 @@ function post_comment_status_meta_box( $post ) {
 	do_action( 'post_comment_status_meta_box-options', $post ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 	?>
 </p>
-	<?php
+<?php
 }
 
 /**
@@ -1101,7 +1101,7 @@ function link_submit_meta_box( $link ) {
 	?>
 <div class="clear"></div>
 </div>
-	<?php
+<?php
 }
 
 /**
@@ -1373,7 +1373,7 @@ function link_advanced_meta_box( $link ) {
 		</td>
 	</tr>
 </table>
-	<?php
+<?php
 }
 
 /**

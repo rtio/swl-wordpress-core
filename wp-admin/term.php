@@ -21,7 +21,7 @@ if ( empty( $_REQUEST['tag_ID'] ) ) {
 	}
 
 	wp_redirect( esc_url_raw( $sendback ) );
-	exit;
+	wp_exit();
 }
 
 $tag_ID = absint( $_REQUEST['tag_ID'] );

@@ -12,7 +12,7 @@ define( 'SHORTINIT', true );
 require_once dirname( __DIR__ ) . '/wp-load.php';
 
 if ( ! is_multisite() ) {
-	die( 'Multisite support not enabled' );
+	wp_exit( 'Multisite support not enabled' );
 }
 
 ms_file_constants();
@@ -21,13 +21,13 @@ error_reporting( 0 );
 
 if ( '1' == $current_blog->archived || '1' == $current_blog->spam || '1' == $current_blog->deleted ) {
 	status_header( 404 );
-	die( '404 &#8212; File not found.' );
+	wp_exit( '404 &#8212; File not found.' );
 }
 
 $file = rtrim( BLOGUPLOADDIR, '/' ) . '/' . str_replace( '..', '', $_GET['file'] );
 if ( ! is_file( $file ) ) {
 	status_header( 404 );
-	die( '404 &#8212; File not found.' );
+	wp_exit( '404 &#8212; File not found.' );
 }
 
 $mime = wp_check_filetype( $file );
@@ -41,25 +41,25 @@ if ( $mime['type'] ) {
 	$mimetype = 'image/' . substr( $file, strrpos( $file, '.' ) + 1 );
 }
 
-header( 'Content-Type: ' . $mimetype ); // Always send this.
+wp_header( 'Content-Type: ' . $mimetype ); // Always send this.
 if ( false === strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS' ) ) {
-	header( 'Content-Length: ' . filesize( $file ) );
+	wp_header( 'Content-Length: ' . filesize( $file ) );
 }
 
 // Optional support for X-Sendfile and X-Accel-Redirect.
 if ( WPMU_ACCEL_REDIRECT ) {
-	header( 'X-Accel-Redirect: ' . str_replace( WP_CONTENT_DIR, '', $file ) );
-	exit;
+	wp_header( 'X-Accel-Redirect: ' . str_replace( WP_CONTENT_DIR, '', $file ) );
+	wp_exit();
 } elseif ( WPMU_SENDFILE ) {
-	header( 'X-Sendfile: ' . $file );
-	exit;
+	wp_header( 'X-Sendfile: ' . $file );
+	wp_exit();
 }
 
 $last_modified = gmdate( 'D, d M Y H:i:s', filemtime( $file ) );
 $etag          = '"' . md5( $last_modified ) . '"';
-header( "Last-Modified: $last_modified GMT" );
-header( 'ETag: ' . $etag );
-header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + 100000000 ) . ' GMT' );
+wp_header( "Last-Modified: $last_modified GMT" );
+wp_header( 'ETag: ' . $etag );
+wp_header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + 100000000 ) . ' GMT' );
 
 // Support for conditional GET - use stripslashes() to avoid formatting.php dependency.
 $client_etag = isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) ? stripslashes( $_SERVER['HTTP_IF_NONE_MATCH'] ) : false;
@@ -80,7 +80,7 @@ if ( ( $client_last_modified && $client_etag )
 	: ( ( $client_modified_timestamp >= $modified_timestamp ) || ( $client_etag == $etag ) )
 	) {
 	status_header( 304 );
-	exit;
+	wp_exit();
 }
 
 // If we made it this far, just serve the file.

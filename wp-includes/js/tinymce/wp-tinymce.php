@@ -28,10 +28,10 @@ function get_file( $path ) {
 
 $expires_offset = 31536000; // 1 year.
 
-header( 'Content-Type: application/javascript; charset=UTF-8' );
-header( 'Vary: Accept-Encoding' ); // Handle proxies.
-header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expires_offset ) . ' GMT' );
-header( "Cache-Control: public, max-age=$expires_offset" );
+wp_header( 'Content-Type: application/javascript; charset=UTF-8' );
+wp_header( 'Vary: Accept-Encoding' ); // Handle proxies.
+wp_header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expires_offset ) . ' GMT' );
+wp_header( "Cache-Control: public, max-age=$expires_offset" );
 
 $file = get_file( $basepath . '/wp-tinymce.js' );
 if ( isset( $_GET['c'] ) && $file ) {
@@ -41,4 +41,4 @@ if ( isset( $_GET['c'] ) && $file ) {
 	echo get_file( $basepath . '/tinymce.min.js' );
 	echo get_file( $basepath . '/plugins/compat3x/plugin.min.js' );
 }
-exit;
+wp_exit();

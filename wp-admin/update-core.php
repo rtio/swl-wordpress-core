@@ -16,7 +16,7 @@ add_thickbox();
 
 if ( is_multisite() && ! is_network_admin() ) {
 	wp_redirect( network_admin_url( 'update-core.php' ) );
-	exit;
+	wp_exit();
 }
 
 if ( ! current_user_can( 'update_core' ) && ! current_user_can( 'update_themes' ) && ! current_user_can( 'update_plugins' ) && ! current_user_can( 'update_languages' ) ) {
@@ -898,7 +898,7 @@ function do_dismiss_core_update() {
 	}
 	dismiss_core_update( $update );
 	wp_redirect( wp_nonce_url( 'update-core.php?action=upgrade-core', 'upgrade-core' ) );
-	exit;
+	wp_exit();
 }
 
 /**
@@ -915,7 +915,7 @@ function do_undismiss_core_update() {
 	}
 	undismiss_core_update( $version, $locale );
 	wp_redirect( wp_nonce_url( 'update-core.php?action=upgrade-core', 'upgrade-core' ) );
-	exit;
+	wp_exit();
 }
 
 $action = isset( $_GET['action'] ) ? $_GET['action'] : 'upgrade-core';
@@ -1102,7 +1102,7 @@ if ( 'upgrade-core' === $action ) {
 		$plugins = (array) $_POST['checked'];
 	} else {
 		wp_redirect( admin_url( 'update-core.php' ) );
-		exit;
+		wp_exit();
 	}
 
 	$url = 'update.php?action=update-selected&plugins=' . urlencode( implode( ',', $plugins ) );
@@ -1142,7 +1142,7 @@ if ( 'upgrade-core' === $action ) {
 		$themes = (array) $_POST['checked'];
 	} else {
 		wp_redirect( admin_url( 'update-core.php' ) );
-		exit;
+		wp_exit();
 	}
 
 	$url = 'update.php?action=update-selected-themes&themes=' . urlencode( implode( ',', $themes ) );
@@ -1218,7 +1218,7 @@ if ( 'upgrade-core' === $action ) {
 	}
 
 	wp_redirect( $redirect_url );
-	exit;
+	wp_exit();
 } else {
 	/**
 	 * Fires for each custom update action on the WordPress Updates screen.

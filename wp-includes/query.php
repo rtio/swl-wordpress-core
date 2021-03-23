@@ -1080,7 +1080,7 @@ function wp_old_slug_redirect() {
 		}
 
 		wp_redirect( $link, 301 ); // Permanent redirect.
-		exit;
+		wp_exit();
 	}
 }
 

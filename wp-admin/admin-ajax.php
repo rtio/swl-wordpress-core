@@ -24,8 +24,8 @@ require_once dirname( __DIR__ ) . '/wp-load.php';
 /** Allow for cross-domain requests (from the front end). */
 send_origin_headers();
 
-header( 'Content-Type: text/html; charset=' . get_option( 'blog_charset' ) );
-header( 'X-Robots-Tag: noindex' );
+wp_header( 'Content-Type: text/html; charset=' . get_option( 'blog_charset' ) );
+wp_header( 'X-Robots-Tag: noindex' );
 
 // Require an action parameter.
 if ( empty( $_REQUEST['action'] ) ) {

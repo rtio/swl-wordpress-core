@@ -113,7 +113,7 @@ text-align: center;
 <p class="message">%s</p>
 </body>
 </html>' );
-	die( sprintf( $message_template, $message ) );
+	wp_exit( sprintf( $message_template, $message ) );
 }
 endif;
 
@@ -282,11 +282,11 @@ function wpmu_admin_do_redirect( $url = '' ) {
 	if ( $ref ) {
 		$ref = wpmu_admin_redirect_add_updated_param( $ref );
 		wp_redirect( $ref );
-		exit;
+		wp_exit();
 	}
 	if ( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
 		wp_redirect( $_SERVER['HTTP_REFERER'] );
-		exit;
+		wp_exit();
 	}
 
 	$url = wpmu_admin_redirect_add_updated_param( $url );
@@ -299,7 +299,7 @@ function wpmu_admin_do_redirect( $url = '' ) {
 		$url = wpmu_admin_redirect_add_updated_param( $_POST['redirect'] );
 	}
 	wp_redirect( $url );
-	exit;
+	wp_exit();
 }
 
 /**
@@ -614,7 +614,7 @@ function install_blog( $blog_id, $blog_title = '' ) {
 
 	$suppress = $wpdb->suppress_errors();
 	if ( $wpdb->get_results( "DESCRIBE {$wpdb->posts}" ) ) {
-		die( '<h1>' . __( 'Already Installed' ) . '</h1><p>' . __( 'You appear to have already installed WordPress. To reinstall please clear your old database tables first.' ) . '</p></body></html>' );
+		wp_exit( '<h1>' . __( 'Already Installed' ) . '</h1><p>' . __( 'You appear to have already installed WordPress. To reinstall please clear your old database tables first.' ) . '</p></body></html>' );
 	}
 	$wpdb->suppress_errors( $suppress );
 

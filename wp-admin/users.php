@@ -108,7 +108,7 @@ switch ( $wp_list_table->current_action() ) {
 
 		if ( empty( $_REQUEST['users'] ) ) {
 			wp_redirect( $redirect );
-			exit;
+			wp_exit();
 		}
 
 		$editable_roles = get_editable_roles();
@@ -157,7 +157,7 @@ switch ( $wp_list_table->current_action() ) {
 		}
 
 		wp_redirect( add_query_arg( 'update', $update, $redirect ) );
-		exit;
+		wp_exit();
 
 	case 'dodelete':
 		if ( is_multisite() ) {
@@ -168,7 +168,7 @@ switch ( $wp_list_table->current_action() ) {
 
 		if ( empty( $_REQUEST['users'] ) ) {
 			wp_redirect( $redirect );
-			exit;
+			wp_exit();
 		}
 
 		$userids = array_map( 'intval', (array) $_REQUEST['users'] );
@@ -177,7 +177,7 @@ switch ( $wp_list_table->current_action() ) {
 			$url = self_admin_url( 'users.php?action=delete&users[]=' . implode( '&users[]=', $userids ) . '&error=true' );
 			$url = str_replace( '&amp;', '&', wp_nonce_url( $url, 'bulk-users' ) );
 			wp_redirect( $url );
-			exit;
+			wp_exit();
 		}
 
 		if ( ! current_user_can( 'delete_users' ) ) {
@@ -215,7 +215,7 @@ switch ( $wp_list_table->current_action() ) {
 			$redirect
 		);
 		wp_redirect( $redirect );
-		exit;
+		wp_exit();
 
 	case 'resetpassword':
 		check_admin_referer( 'bulk-users' );
@@ -224,7 +224,7 @@ switch ( $wp_list_table->current_action() ) {
 		}
 		if ( empty( $_REQUEST['users'] ) ) {
 			wp_redirect( $redirect );
-			exit();
+			wp_exit();
 		}
 		$userids = array_map( 'intval', (array) $_REQUEST['users'] );
 
@@ -255,7 +255,7 @@ switch ( $wp_list_table->current_action() ) {
 			$redirect
 		);
 		wp_redirect( $redirect );
-		exit;
+		wp_exit();
 
 	case 'delete':
 		if ( is_multisite() ) {
@@ -266,7 +266,7 @@ switch ( $wp_list_table->current_action() ) {
 
 		if ( empty( $_REQUEST['users'] ) && empty( $_REQUEST['user'] ) ) {
 			wp_redirect( $redirect );
-			exit;
+			wp_exit();
 		}
 
 		if ( ! current_user_can( 'delete_users' ) ) {
@@ -405,7 +405,7 @@ switch ( $wp_list_table->current_action() ) {
 
 		if ( empty( $_REQUEST['users'] ) ) {
 			wp_redirect( $redirect );
-			exit;
+			wp_exit();
 		}
 
 		if ( ! current_user_can( 'remove_users' ) ) {
@@ -426,7 +426,7 @@ switch ( $wp_list_table->current_action() ) {
 
 		$redirect = add_query_arg( array( 'update' => $update ), $redirect );
 		wp_redirect( $redirect );
-		exit;
+		wp_exit();
 
 	case 'remove':
 		check_admin_referer( 'bulk-users' );
@@ -437,7 +437,7 @@ switch ( $wp_list_table->current_action() ) {
 
 		if ( empty( $_REQUEST['users'] ) && empty( $_REQUEST['user'] ) ) {
 			wp_redirect( $redirect );
-			exit;
+			wp_exit();
 		}
 
 		if ( ! current_user_can( 'remove_users' ) ) {
@@ -497,7 +497,7 @@ switch ( $wp_list_table->current_action() ) {
 	default:
 		if ( ! empty( $_GET['_wp_http_referer'] ) ) {
 			wp_redirect( remove_query_arg( array( '_wp_http_referer', '_wpnonce' ), wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
-			exit;
+			wp_exit();
 		}
 
 		if ( $wp_list_table->current_action() && ! empty( $_REQUEST['users'] ) ) {
@@ -509,14 +509,14 @@ switch ( $wp_list_table->current_action() ) {
 			$sendback = apply_filters( "handle_bulk_actions-{$screen}", $sendback, $wp_list_table->current_action(), $userids ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 			wp_safe_redirect( $sendback );
-			exit;
+			wp_exit();
 		}
 
 		$wp_list_table->prepare_items();
 		$total_pages = $wp_list_table->get_pagination_arg( 'total_pages' );
 		if ( $pagenum > $total_pages && $total_pages > 0 ) {
 			wp_redirect( add_query_arg( 'paged', $total_pages ) );
-			exit;
+			wp_exit();
 		}
 
 		require_once ABSPATH . 'wp-admin/admin-header.php';

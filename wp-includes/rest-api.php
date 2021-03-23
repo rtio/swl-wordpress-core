@@ -354,7 +354,7 @@ function rest_api_loaded() {
 	$server->serve_request( $route );
 
 	// We're done.
-	die();
+	wp_exit();
 }
 
 /**
@@ -602,7 +602,7 @@ function rest_handle_deprecated_function( $function, $replacement, $version ) {
 		$string = sprintf( __( '%1$s (since %2$s; no alternative available)' ), $function, $version );
 	}
 
-	header( sprintf( 'X-WP-DeprecatedFunction: %s', $string ) );
+	wp_header( sprintf( 'X-WP-DeprecatedFunction: %s', $string ) );
 }
 
 /**
@@ -626,7 +626,7 @@ function rest_handle_deprecated_argument( $function, $message, $version ) {
 		$string = sprintf( __( '%1$s (since %2$s; no alternative available)' ), $function, $version );
 	}
 
-	header( sprintf( 'X-WP-DeprecatedParam: %s', $string ) );
+	wp_header( sprintf( 'X-WP-DeprecatedParam: %s', $string ) );
 }
 
 /**
@@ -653,7 +653,7 @@ function rest_handle_doing_it_wrong( $function, $message, $version ) {
 		$string = sprintf( $string, $function, $message );
 	}
 
-	header( sprintf( 'X-WP-DoingItWrong: %s', $string ) );
+	wp_header( sprintf( 'X-WP-DoingItWrong: %s', $string ) );
 }
 
 /**
@@ -672,12 +672,12 @@ function rest_send_cors_headers( $value ) {
 		if ( 'null' !== $origin ) {
 			$origin = esc_url_raw( $origin );
 		}
-		header( 'Access-Control-Allow-Origin: ' . $origin );
-		header( 'Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE' );
-		header( 'Access-Control-Allow-Credentials: true' );
-		header( 'Vary: Origin', false );
+		wp_header( 'Access-Control-Allow-Origin: ' . $origin );
+		wp_header( 'Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE' );
+		wp_header( 'Access-Control-Allow-Credentials: true' );
+		wp_header( 'Vary: Origin', false );
 	} elseif ( ! headers_sent() && 'GET' === $_SERVER['REQUEST_METHOD'] && ! is_user_logged_in() ) {
-		header( 'Vary: Origin', false );
+		wp_header( 'Vary: Origin', false );
 	}
 
 	return $value;
@@ -953,12 +953,12 @@ function rest_output_link_header() {
 		return;
 	}
 
-	header( sprintf( 'Link: <%s>; rel="https://api.w.org/"', esc_url_raw( $api_root ) ), false );
+	wp_header( sprintf( 'Link: <%s>; rel="https://api.w.org/"', esc_url_raw( $api_root ) ), false );
 
 	$resource = rest_get_queried_resource_route();
 
 	if ( $resource ) {
-		header( sprintf( 'Link: <%s>; rel="alternate"; type="application/json"', esc_url_raw( rest_url( $resource ) ) ), false );
+		wp_header( sprintf( 'Link: <%s>; rel="alternate"; type="application/json"', esc_url_raw( rest_url( $resource ) ) ), false );
 	}
 }
 

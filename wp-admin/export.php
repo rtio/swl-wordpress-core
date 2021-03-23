@@ -119,7 +119,7 @@ if ( isset( $_GET['download'] ) ) {
 	$args = apply_filters( 'export_args', $args );
 
 	export_wp( $args );
-	die();
+	wp_exit();
 }
 
 require_once ABSPATH . 'wp-admin/admin-header.php';

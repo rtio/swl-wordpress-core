@@ -117,14 +117,14 @@ while ( have_posts() ) :
 
 		<?php /* How to display posts of the Aside format. The asides category is the old way. */ ?>
 
-	<?php elseif ( ( function_exists( 'get_post_format' ) && 'aside' === get_post_format( $post->ID ) ) || in_category( _x( 'asides', 'asides category slug', 'twentyten' ) ) ) : ?>
+<?php elseif ( ( function_exists( 'get_post_format' ) && 'aside' === get_post_format( $post->ID ) ) || in_category( _x( 'asides', 'asides category slug', 'twentyten' ) ) ) : ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 		<?php if ( is_archive() || is_search() ) : // Display excerpts for archives and search. ?>
 			<div class="entry-summary">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
-		<?php else : ?>
+<?php else : ?>
 			<div class="entry-content">
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
 			</div><!-- .entry-content -->
@@ -140,7 +140,7 @@ while ( have_posts() ) :
 
 		<?php /* How to display all other posts. */ ?>
 
-	<?php else : ?>
+<?php else : ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 
@@ -152,7 +152,7 @@ while ( have_posts() ) :
 			<div class="entry-summary">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
-	<?php else : ?>
+<?php else : ?>
 			<div class="entry-content">
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
 				<?php

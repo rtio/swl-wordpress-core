@@ -489,17 +489,17 @@ function send_origin_headers() {
 	$origin = get_http_origin();
 
 	if ( is_allowed_http_origin( $origin ) ) {
-		header( 'Access-Control-Allow-Origin: ' . $origin );
-		header( 'Access-Control-Allow-Credentials: true' );
+		wp_header( 'Access-Control-Allow-Origin: ' . $origin );
+		wp_header( 'Access-Control-Allow-Credentials: true' );
 		if ( 'OPTIONS' === $_SERVER['REQUEST_METHOD'] ) {
-			exit;
+			wp_exit();
 		}
 		return $origin;
 	}
 
 	if ( 'OPTIONS' === $_SERVER['REQUEST_METHOD'] ) {
 		status_header( 403 );
-		exit;
+		wp_exit();
 	}
 
 	return false;

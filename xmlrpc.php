@@ -31,7 +31,7 @@ if ( isset( $HTTP_RAW_POST_DATA ) ) {
 require_once __DIR__ . '/wp-load.php';
 
 if ( isset( $_GET['rsd'] ) ) { // http://cyber.law.harvard.edu/blogs/gems/tech/rsd.html
-	header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+	wp_header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
 	echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '"?' . '>';
 	?>
 <rsd version="1.0" xmlns="http://archipelago.phrasewise.com/rsd">
@@ -58,7 +58,7 @@ if ( isset( $_GET['rsd'] ) ) { // http://cyber.law.harvard.edu/blogs/gems/tech/r
 	</service>
 </rsd>
 	<?php
-	exit;
+	wp_exit();
 }
 
 require_once ABSPATH . 'wp-admin/includes/admin.php';
@@ -86,7 +86,7 @@ $wp_xmlrpc_server       = new $wp_xmlrpc_server_class;
 // Fire off the request.
 $wp_xmlrpc_server->serve_request();
 
-exit;
+wp_exit();
 
 /**
  * logIO() - Writes logging info to a file.

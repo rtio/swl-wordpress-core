@@ -274,7 +274,7 @@ function media_send_to_editor( $html ) {
 	win.send_to_editor( <?php echo wp_json_encode( $html ); ?> );
 	</script>
 	<?php
-	exit;
+	wp_exit();
 }
 
 /**
@@ -413,7 +413,7 @@ function media_handle_upload( $file_id, $post_id, $post_data = array(), $overrid
 		// Set a custom header with the attachment_id.
 		// Used by the browser/client to resume creating image sub-sizes after a PHP fatal error.
 		if ( ! headers_sent() ) {
-			header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
+			wp_header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
 		}
 
 		// The image sub-sizes are created during wp_generate_attachment_metadata().
@@ -806,7 +806,7 @@ function media_upload_form_handler() {
 		</script>
 		<?php
 
-		exit;
+		wp_exit();
 	}
 
 	if ( isset( $send_id ) ) {
@@ -2363,7 +2363,7 @@ function media_upload_type_form( $type = 'file', $errors = null, $id = null ) {
 			echo get_media_items( $id, $errors );
 		} else {
 			echo '<div id="media-upload-error">' . esc_html( $id->get_error_message() ) . '</div></div>';
-			exit;
+			wp_exit();
 		}
 	}
 
@@ -2682,7 +2682,7 @@ function media_upload_gallery_form( $errors ) {
 	</p>
 	</div>
 	</form>
-	<?php
+<?php
 }
 
 /**
@@ -2897,7 +2897,7 @@ function media_upload_library_form( $errors ) {
 	<input type="hidden" name="post_id" id="post_id" value="<?php echo (int) $post_id; ?>" />
 	</p>
 	</form>
-	<?php
+<?php
 }
 
 /**
@@ -3830,6 +3830,6 @@ function wp_media_attach_action( $parent_id, $action = 'attach' ) {
 		$location = add_query_arg( array( $key => $result ), $location );
 
 		wp_redirect( $location );
-		exit;
+		wp_exit();
 	}
 }

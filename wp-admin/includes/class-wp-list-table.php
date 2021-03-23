@@ -251,7 +251,7 @@ class WP_List_Table {
 	 * @abstract
 	 */
 	public function ajax_user_can() {
-		die( 'function WP_List_Table::ajax_user_can() must be overridden in a subclass.' );
+		wp_exit( 'function WP_List_Table::ajax_user_can() must be overridden in a subclass.' );
 	}
 
 	/**
@@ -263,7 +263,7 @@ class WP_List_Table {
 	 * @abstract
 	 */
 	public function prepare_items() {
-		die( 'function WP_List_Table::prepare_items() must be overridden in a subclass.' );
+		wp_exit( 'function WP_List_Table::prepare_items() must be overridden in a subclass.' );
 	}
 
 	/**
@@ -290,7 +290,7 @@ class WP_List_Table {
 		// Redirect if page number is invalid and headers are not already sent.
 		if ( ! headers_sent() && ! wp_doing_ajax() && $args['total_pages'] > 0 && $this->get_pagenum() > $args['total_pages'] ) {
 			wp_redirect( add_query_arg( 'paged', $args['total_pages'] ) );
-			exit;
+			wp_exit();
 		}
 
 		$this->_pagination_args = $args;
@@ -1008,7 +1008,7 @@ class WP_List_Table {
 	 * @return array
 	 */
 	public function get_columns() {
-		die( 'function WP_List_Table::get_columns() must be overridden in a subclass.' );
+		wp_exit( 'function WP_List_Table::get_columns() must be overridden in a subclass.' );
 	}
 
 	/**
@@ -1502,7 +1502,7 @@ class WP_List_Table {
 			$response['total_pages_i18n'] = number_format_i18n( $this->_pagination_args['total_pages'] );
 		}
 
-		die( wp_json_encode( $response ) );
+		wp_exit( wp_json_encode( $response ) );
 	}
 
 	/**

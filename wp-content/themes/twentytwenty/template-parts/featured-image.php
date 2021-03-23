@@ -39,5 +39,5 @@ if ( has_post_thumbnail() && ! post_password_required() ) {
 
 	</figure><!-- .featured-media -->
 
-	<?php
+<?php
 }

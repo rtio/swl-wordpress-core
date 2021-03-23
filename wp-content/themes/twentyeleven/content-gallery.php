@@ -28,7 +28,7 @@
 		<div class="entry-summary">
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
-		<?php else : ?>
+<?php else : ?>
 		<div class="entry-content">
 			<?php if ( post_password_required() ) : ?>
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?>
@@ -56,7 +56,7 @@
 					</em></p>
 						<?php endif; // End twentyeleven_get_gallery_images() check. ?>
 				<?php the_excerpt(); ?>
-		<?php endif; ?>
+<?php endif; ?>
 			<?php
 			wp_link_pages(
 				array(
@@ -102,14 +102,14 @@
 			$show_sep = true;
 			?>
 		</span>
-		<?php endif; // End if $tags_list. ?>
+<?php endif; // End if $tags_list. ?>
 
 		<?php if ( comments_open() ) : ?>
 			<?php if ( $show_sep ) : ?>
 		<span class="sep"> | </span>
 		<?php endif; // End if $show_sep. ?>
 		<span class="comments-link"><?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'twentyeleven' ) . '</span>', __( '<b>1</b> Reply', 'twentyeleven' ), __( '<b>%</b> Replies', 'twentyeleven' ) ); ?></span>
-		<?php endif; // End if comments_open(). ?>
+<?php endif; // End if comments_open(). ?>
 
 		<?php edit_post_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-meta -->

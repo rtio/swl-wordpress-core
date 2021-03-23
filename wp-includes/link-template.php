@@ -4062,7 +4062,7 @@ function wp_shortlink_header() {
 		return;
 	}
 
-	header( 'Link: <' . $shortlink . '>; rel=shortlink', false );
+	wp_header( 'Link: <' . $shortlink . '>; rel=shortlink', false );
 }
 
 /**

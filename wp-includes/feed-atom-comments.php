@@ -5,7 +5,7 @@
  * @package WordPress
  */
 
-header( 'Content-Type: ' . feed_content_type( 'atom' ) . '; charset=' . get_option( 'blog_charset' ), true );
+wp_header( 'Content-Type: ' . feed_content_type( 'atom' ) . '; charset=' . get_option( 'blog_charset' ), true );
 echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '" ?' . '>';
 
 /** This action is documented in wp-includes/feed-rss2.php */
@@ -113,7 +113,7 @@ while ( have_comments() ) :
 		if ( 0 == $comment->comment_parent ) : // This comment is top-level.
 			?>
 			<thr:in-reply-to ref="<?php the_guid(); ?>" href="<?php the_permalink_rss(); ?>" type="<?php bloginfo_rss( 'html_type' ); ?>" />
-			<?php
+<?php
 		else : // This comment is in reply to another comment.
 			$parent_comment = get_comment( $comment->comment_parent );
 			/*
@@ -123,7 +123,7 @@ while ( have_comments() ) :
 			 */
 			?>
 			<thr:in-reply-to ref="<?php comment_guid( $parent_comment ); ?>" href="<?php echo get_comment_link( $parent_comment ); ?>" type="<?php bloginfo_rss( 'html_type' ); ?>" />
-			<?php
+<?php
 		endif;
 
 		/**
@@ -137,7 +137,7 @@ while ( have_comments() ) :
 		do_action( 'comment_atom_entry', $comment->comment_ID, $comment_post->ID );
 		?>
 	</entry>
-	<?php
+<?php
 endwhile;
 ?>
 </feed>

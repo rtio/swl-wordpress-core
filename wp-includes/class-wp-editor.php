@@ -1886,6 +1886,6 @@ final class _WP_Editors {
 		</div>
 		</form>
 		</div>
-		<?php
+<?php
 	}
 }

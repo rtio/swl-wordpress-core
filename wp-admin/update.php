@@ -84,7 +84,7 @@ if ( isset( $_GET['action'] ) ) {
 			wp_redirect( admin_url( 'update.php?action=activate-plugin&failure=true&plugin=' . urlencode( $plugin ) . '&_wpnonce=' . $_GET['_wpnonce'] ) );
 			activate_plugin( $plugin, '', ! empty( $_GET['networkwide'] ), true );
 			wp_redirect( admin_url( 'update.php?action=activate-plugin&success=true&plugin=' . urlencode( $plugin ) . '&_wpnonce=' . $_GET['_wpnonce'] ) );
-			die();
+			wp_exit();
 		}
 		iframe_header( __( 'Plugin Reactivation' ), true );
 		if ( isset( $_GET['success'] ) ) {
@@ -195,7 +195,7 @@ if ( isset( $_GET['action'] ) ) {
 		}
 
 		wp_redirect( self_admin_url( 'plugin-install.php' ) );
-		exit;
+		wp_exit();
 	} elseif ( 'upgrade-theme' === $action ) {
 
 		if ( ! current_user_can( 'update_themes' ) ) {
@@ -338,7 +338,7 @@ if ( isset( $_GET['action'] ) ) {
 		}
 
 		wp_redirect( self_admin_url( 'theme-install.php' ) );
-		exit;
+		wp_exit();
 	} else {
 		/**
 		 * Fires when a custom plugin or theme update request is received.

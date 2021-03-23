@@ -346,7 +346,7 @@ if ( ! function_exists( 'twentyeleven_header_style' ) ) :
 		}
 	<?php endif; ?>
 	</style>
-		<?php
+<?php
 	}
 endif; // twentyeleven_header_style()
 

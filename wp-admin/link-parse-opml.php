@@ -7,7 +7,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die();
+	wp_exit();
 }
 
 /**

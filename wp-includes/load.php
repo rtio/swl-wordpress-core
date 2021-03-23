@@ -147,10 +147,10 @@ function wp_check_php_mysql_versions() {
 
 	if ( version_compare( $required_php_version, $php_version, '>' ) ) {
 		$protocol = wp_get_server_protocol();
-		header( sprintf( '%s 500 Internal Server Error', $protocol ), true, 500 );
-		header( 'Content-Type: text/html; charset=utf-8' );
+		wp_header( sprintf( '%s 500 Internal Server Error', $protocol ), true, 500 );
+		wp_header( 'Content-Type: text/html; charset=utf-8' );
 		printf( 'Your server is running PHP version %1$s but WordPress %2$s requires at least %3$s.', $php_version, $wp_version, $required_php_version );
-		exit( 1 );
+		wp_exit( 1 );
 	}
 
 	if ( ! extension_loaded( 'mysql' ) && ! extension_loaded( 'mysqli' ) && ! extension_loaded( 'mysqlnd' )
@@ -169,7 +169,7 @@ function wp_check_php_mysql_versions() {
 			__( 'Requirements Not Met' ),
 			$args
 		);
-		exit( 1 );
+		wp_exit( 1 );
 	}
 }
 
@@ -249,8 +249,8 @@ function wp_get_environment_type() {
  */
 function wp_favicon_request() {
 	if ( '/favicon.ico' === $_SERVER['REQUEST_URI'] ) {
-		header( 'Content-Type: image/vnd.microsoft.icon' );
-		exit;
+		wp_header( 'Content-Type: image/vnd.microsoft.icon' );
+		wp_exit();
 	}
 }
 
@@ -271,13 +271,13 @@ function wp_maintenance() {
 
 	if ( file_exists( WP_CONTENT_DIR . '/maintenance.php' ) ) {
 		require_once WP_CONTENT_DIR . '/maintenance.php';
-		die();
+		wp_exit();
 	}
 
 	require_once ABSPATH . WPINC . '/functions.php';
 	wp_load_translations_early();
 
-	header( 'Retry-After: 600' );
+	wp_header( 'Retry-After: 600' );
 
 	wp_die(
 		__( 'Briefly unavailable for scheduled maintenance. Check back in a minute.' ),
@@ -733,7 +733,7 @@ function wp_not_installed() {
 		$link = wp_guess_url() . '/wp-admin/install.php';
 
 		wp_redirect( $link );
-		die();
+		wp_exit();
 	}
 }
 
@@ -1578,7 +1578,7 @@ function wp_start_scraping_edited_file_errors() {
 			)
 		);
 		echo "###### wp_scraping_result_end:$key ######";
-		die();
+		wp_exit();
 	}
 	if ( ! defined( 'WP_SANDBOX_SCRAPING' ) ) {
 		define( 'WP_SANDBOX_SCRAPING', true );

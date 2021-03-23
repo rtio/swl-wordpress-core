@@ -191,7 +191,7 @@ if ( ! function_exists( 'twentyfifteen_header_style' ) ) :
 		}
 	<?php endif; ?>
 	</style>
-		<?php
+<?php
 	}
 endif; // twentyfifteen_header_style()
 

@@ -11,7 +11,7 @@
  */
 
 if ( ! headers_sent() ) {
-	header( 'X-WP-embed: true' );
+	wp_header( 'X-WP-embed: true' );
 }
 
 ?>

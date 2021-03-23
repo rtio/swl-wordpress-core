@@ -977,7 +977,7 @@ final class WP_Screen {
 			</div>
 		<?php endif; ?>
 		</div>
-		<?php
+<?php
 	}
 
 	/**

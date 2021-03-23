@@ -53,7 +53,7 @@ if ( get_option( 'db_upgraded' ) ) {
 
 	if ( ! is_multisite() ) {
 		wp_redirect( admin_url( 'upgrade.php?_wp_http_referer=' . urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
-		exit;
+		wp_exit();
 	}
 
 	/**
@@ -194,7 +194,7 @@ if ( isset( $plugin_page ) ) {
 				$query_string = 'page=' . $plugin_page;
 			}
 			wp_redirect( admin_url( 'tools.php?' . $query_string ) );
-			exit;
+			wp_exit();
 		}
 	}
 	unset( $the_parent );
@@ -296,7 +296,7 @@ if ( isset( $plugin_page ) ) {
 
 	require_once ABSPATH . 'wp-admin/admin-footer.php';
 
-	exit;
+	wp_exit();
 } elseif ( isset( $_GET['import'] ) ) {
 
 	$importer = $_GET['import'];
@@ -307,12 +307,12 @@ if ( isset( $plugin_page ) ) {
 
 	if ( validate_file( $importer ) ) {
 		wp_redirect( admin_url( 'import.php?invalid=' . $importer ) );
-		exit;
+		wp_exit();
 	}
 
 	if ( ! isset( $wp_importers[ $importer ] ) || ! is_callable( $wp_importers[ $importer ][2] ) ) {
 		wp_redirect( admin_url( 'import.php?invalid=' . $importer ) );
-		exit;
+		wp_exit();
 	}
 
 	/**
@@ -357,7 +357,7 @@ if ( isset( $plugin_page ) ) {
 	// Make sure rules are flushed.
 	flush_rewrite_rules( false );
 
-	exit;
+	wp_exit();
 } else {
 	/**
 	 * Fires before a particular screen is loaded.

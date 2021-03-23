@@ -36,7 +36,7 @@ if ( $_POST ) {
 		}
 	}
 	wp_redirect( admin_url( 'upload.php' ) );
-	exit;
+	wp_exit();
 }
 
 $title       = __( 'Upload New Media' );

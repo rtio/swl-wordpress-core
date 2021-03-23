@@ -22,7 +22,7 @@ if ( defined( 'ABSPATH' ) ) {
 
 require_once ABSPATH . 'wp-admin/admin.php';
 
-header( 'Content-Type: text/plain; charset=' . get_option( 'blog_charset' ) );
+wp_header( 'Content-Type: text/plain; charset=' . get_option( 'blog_charset' ) );
 
 if ( isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'] ) {
 	require ABSPATH . 'wp-admin/includes/ajax-actions.php';
@@ -31,7 +31,7 @@ if ( isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action']
 	nocache_headers();
 
 	wp_ajax_upload_attachment();
-	die( '0' );
+	wp_exit( '0' );
 }
 
 if ( ! current_user_can( 'upload_files' ) ) {
@@ -78,7 +78,7 @@ if ( isset( $_REQUEST['attachment_id'] ) && (int) $_REQUEST['attachment_id'] && 
 			echo get_media_item( $id );
 			break;
 	}
-	exit;
+	wp_exit();
 }
 
 check_admin_referer( 'media-form' );
@@ -106,7 +106,7 @@ if ( is_wp_error( $id ) ) {
 		),
 		esc_html( $id->get_error_message() )
 	);
-	exit;
+	wp_exit();
 }
 
 if ( $_REQUEST['short'] ) {

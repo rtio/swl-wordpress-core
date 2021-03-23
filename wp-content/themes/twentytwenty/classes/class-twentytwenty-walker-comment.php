@@ -142,7 +142,7 @@ if ( ! class_exists( 'TwentyTwenty_Walker_Comment' ) ) {
 
 				</article><!-- .comment-body -->
 
-			<?php
+<?php
 		}
 	}
 }

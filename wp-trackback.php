@@ -25,14 +25,14 @@ if ( empty( $wp ) ) {
  * @param string   $error_message Error message if an error occurred.
  */
 function trackback_response( $error = 0, $error_message = '' ) {
-	header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ) );
+	wp_header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ) );
 	if ( $error ) {
 		echo '<?xml version="1.0" encoding="utf-8"?' . ">\n";
 		echo "<response>\n";
 		echo "<error>1</error>\n";
 		echo "<message>$error_message</message>\n";
 		echo '</response>';
-		die();
+		wp_exit();
 	} else {
 		echo '<?xml version="1.0" encoding="utf-8"?' . ">\n";
 		echo "<response>\n";
@@ -65,7 +65,7 @@ if ( $charset ) {
 
 // No valid uses for UTF-7.
 if ( false !== strpos( $charset, 'UTF-7' ) ) {
-	die;
+	wp_exit();
 }
 
 // For international trackbacks.
@@ -91,7 +91,7 @@ if ( ! isset( $tb_id ) || ! (int) $tb_id ) {
 if ( empty( $title ) && empty( $tb_url ) && empty( $blog_name ) ) {
 	// If it doesn't look like a trackback at all.
 	wp_redirect( get_permalink( $tb_id ) );
-	exit;
+	wp_exit();
 }
 
 if ( ! empty( $tb_url ) && ! empty( $title ) ) {
@@ -109,7 +109,7 @@ if ( ! empty( $tb_url ) && ! empty( $title ) ) {
 	 */
 	do_action( 'pre_trackback_post', $tb_id, $tb_url, $charset, $title, $excerpt, $blog_name );
 
-	header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ) );
+	wp_header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ) );
 
 	if ( ! pings_open( $tb_id ) ) {
 		trackback_response( 1, __( 'Sorry, trackbacks are closed for this item.' ) );

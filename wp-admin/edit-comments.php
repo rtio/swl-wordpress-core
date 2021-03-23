@@ -36,7 +36,7 @@ if ( $doaction ) {
 		$comment_ids = array_map( 'absint', explode( ',', $_REQUEST['ids'] ) );
 	} elseif ( wp_get_referer() ) {
 		wp_safe_redirect( wp_get_referer() );
-		exit;
+		wp_exit();
 	}
 
 	$approved   = 0;
@@ -124,10 +124,10 @@ if ( $doaction ) {
 	}
 
 	wp_safe_redirect( $redirect_to );
-	exit;
+	wp_exit();
 } elseif ( ! empty( $_GET['_wp_http_referer'] ) ) {
 	wp_redirect( remove_query_arg( array( '_wp_http_referer', '_wpnonce' ), wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
-	exit;
+	wp_exit();
 }
 
 $wp_list_table->prepare_items();

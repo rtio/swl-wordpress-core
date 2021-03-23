@@ -15,7 +15,7 @@ require __DIR__ . '/wp-blog-header.php';
 
 if ( ! is_multisite() ) {
 	wp_redirect( wp_registration_url() );
-	die();
+	wp_exit();
 }
 
 $valid_error_codes = array( 'already_active', 'blog_taken' );
@@ -38,9 +38,9 @@ if ( $key ) {
 	$redirect_url = remove_query_arg( 'key' );
 
 	if ( remove_query_arg( false ) !== $redirect_url ) {
-		setcookie( $activate_cookie, $key, 0, $activate_path, COOKIE_DOMAIN, is_ssl(), true );
+		wp_set_cookie( $activate_cookie, $key, 0, $activate_path, COOKIE_DOMAIN, is_ssl(), true );
 		wp_safe_redirect( $redirect_url );
-		exit;
+		wp_exit();
 	} else {
 		$result = wpmu_activate_signup( $key );
 	}
@@ -49,7 +49,7 @@ if ( $key ) {
 if ( null === $result && isset( $_COOKIE[ $activate_cookie ] ) ) {
 	$key    = $_COOKIE[ $activate_cookie ];
 	$result = wpmu_activate_signup( $key );
-	setcookie( $activate_cookie, ' ', time() - YEAR_IN_SECONDS, $activate_path, COOKIE_DOMAIN, is_ssl(), true );
+	wp_set_cookie( $activate_cookie, ' ', time() - YEAR_IN_SECONDS, $activate_path, COOKIE_DOMAIN, is_ssl(), true );
 }
 
 if ( null === $result || ( is_wp_error( $result ) && 'invalid_key' === $result->get_error_code() ) ) {

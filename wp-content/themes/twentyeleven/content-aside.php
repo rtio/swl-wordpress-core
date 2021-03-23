@@ -30,7 +30,7 @@
 		<div class="entry-summary">
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
-		<?php else : ?>
+<?php else : ?>
 		<div class="entry-content">
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?>
 			<?php

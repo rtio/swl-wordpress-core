@@ -1584,9 +1584,9 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 						<?php endif; // is_post_type_viewable() ?>
 
-					<?php endif; // $bulk ?>
+<?php endif; // $bulk ?>
 
-				<?php endif; // post_type_supports( ... 'title' ) ?>
+<?php endif; // post_type_supports( ... 'title' ) ?>
 
 				<?php if ( ! $bulk ) : ?>
 					<fieldset class="inline-edit-date">
@@ -1687,7 +1687,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 					</div>
 				</fieldset>
 
-			<?php endif; // count( $hierarchical_taxonomies ) && ! $bulk ?>
+<?php endif; // count( $hierarchical_taxonomies ) && ! $bulk ?>
 
 			<fieldset class="inline-edit-col-right">
 				<div class="inline-edit-col">
@@ -1746,7 +1746,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 					<?php endif; // ! $bulk ?>
 
-				<?php endif; // post_type_supports( ... 'page-attributes' ) ?>
+<?php endif; // post_type_supports( ... 'page-attributes' ) ?>
 
 				<?php if ( 0 < count( get_page_templates( null, $screen->post_type ) ) ) : ?>
 
@@ -1765,7 +1765,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 						</select>
 					</label>
 
-				<?php endif; ?>
+<?php endif; ?>
 
 				<?php if ( count( $flat_taxonomies ) && ! $bulk ) : ?>
 
@@ -1781,9 +1781,9 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 						<?php endif; // current_user_can( 'assign_terms' ) ?>
 
-					<?php endforeach; // $flat_taxonomies as $taxonomy ?>
+<?php endforeach; // $flat_taxonomies as $taxonomy ?>
 
-				<?php endif; // count( $flat_taxonomies ) && ! $bulk ?>
+<?php endif; // count( $flat_taxonomies ) && ! $bulk ?>
 
 				<?php if ( post_type_supports( $screen->post_type, 'comments' ) || post_type_supports( $screen->post_type, 'trackbacks' ) ) : ?>
 
@@ -1843,9 +1843,9 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 						</div>
 
-					<?php endif; // $bulk ?>
+<?php endif; // $bulk ?>
 
-				<?php endif; // post_type_supports( ... comments or pings ) ?>
+<?php endif; // post_type_supports( ... comments or pings ) ?>
 
 					<div class="inline-edit-group wp-clearfix">
 
@@ -1862,7 +1862,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 									<?php if ( $bulk ) : ?>
 										<option value="private"><?php _e( 'Private' ); ?></option>
 									<?php endif; // $bulk ?>
-								<?php endif; ?>
+<?php endif; ?>
 
 								<option value="pending"><?php _e( 'Pending Review' ); ?></option>
 								<option value="draft"><?php _e( 'Draft' ); ?></option>
@@ -1889,9 +1889,9 @@ class WP_Posts_List_Table extends WP_List_Table {
 									<span class="checkbox-title"><?php _e( 'Make this post sticky' ); ?></span>
 								</label>
 
-							<?php endif; // $bulk ?>
+<?php endif; // $bulk ?>
 
-						<?php endif; // 'post' && $can_publish && current_user_can( 'edit_others_posts' ) ?>
+<?php endif; // 'post' && $can_publish && current_user_can( 'edit_others_posts' ) ?>
 
 					</div>
 

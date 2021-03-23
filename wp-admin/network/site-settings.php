@@ -69,7 +69,7 @@ if ( isset( $_REQUEST['action'] ) && 'update-site' === $_REQUEST['action'] && is
 			'site-settings.php'
 		)
 	);
-	exit;
+	wp_exit();
 }
 
 if ( isset( $_GET['update'] ) ) {

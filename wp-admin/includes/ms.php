@@ -800,7 +800,7 @@ function choose_primary_blog() {
 		</td>
 	</tr>
 	</table>
-	<?php
+<?php
 }
 
 /**

@@ -110,7 +110,7 @@ if ( IS_PROFILE_PAGE && isset( $_GET['newuseremail'] ) && $current_user->ID ) {
 		wp_update_user( $user );
 		delete_user_meta( $current_user->ID, '_new_email' );
 		wp_redirect( add_query_arg( array( 'updated' => 'true' ), self_admin_url( 'profile.php' ) ) );
-		die();
+		wp_exit();
 	} else {
 		wp_redirect( add_query_arg( array( 'error' => 'new-email' ), self_admin_url( 'profile.php' ) ) );
 	}
@@ -118,7 +118,7 @@ if ( IS_PROFILE_PAGE && isset( $_GET['newuseremail'] ) && $current_user->ID ) {
 	check_admin_referer( 'dismiss-' . $current_user->ID . '_new_email' );
 	delete_user_meta( $current_user->ID, '_new_email' );
 	wp_redirect( add_query_arg( array( 'updated' => 'true' ), self_admin_url( 'profile.php' ) ) );
-	die();
+	wp_exit();
 }
 
 switch ( $action ) {
@@ -174,7 +174,7 @@ switch ( $action ) {
 				$redirect = add_query_arg( 'wp_http_referer', urlencode( $wp_http_referer ), $redirect );
 			}
 			wp_redirect( $redirect );
-			exit;
+			wp_exit();
 		}
 
 		// Intentional fall-through to display $errors.
@@ -371,7 +371,7 @@ switch ( $action ) {
 			?>
 		</td>
 	</tr>
-			<?php
+<?php
 endif;
 		?>
 

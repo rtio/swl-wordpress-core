@@ -703,7 +703,7 @@ class SimplePie
 		if (version_compare(PHP_VERSION, '5.6', '<'))
 		{
 			trigger_error('Please upgrade to PHP 5.6 or newer.');
-			die();
+			wp_exit();
 		}
 
 		// Other objects, instances created here so we can set options on them
@@ -1828,7 +1828,7 @@ class SimplePie
 			{
 				$header .= ' charset=UTF-8';
 			}
-			header($header);
+			wp_header( $header );
 		}
 	}
 

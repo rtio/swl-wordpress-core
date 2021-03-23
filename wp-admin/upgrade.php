@@ -32,7 +32,7 @@ if ( isset( $_GET['step'] ) ) {
 // Do it. No output.
 if ( 'upgrade_db' === $step ) {
 	wp_upgrade();
-	die( '0' );
+	wp_exit( '0' );
 }
 
 /**
@@ -53,7 +53,7 @@ if ( file_exists( WP_CONTENT_DIR . '/db.php' ) && empty( $wpdb->is_mysql ) ) {
 	$mysql_compat = version_compare( $mysql_version, $required_mysql_version, '>=' );
 }
 
-header( 'Content-Type: ' . get_option( 'html_type' ) . '; charset=' . get_option( 'blog_charset' ) );
+wp_header( 'Content-Type: ' . get_option( 'html_type' ) . '; charset=' . get_option( 'blog_charset' ) );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

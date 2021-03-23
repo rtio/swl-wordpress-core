@@ -503,18 +503,18 @@ class WP {
 			unset( $headers['Last-Modified'] );
 
 			if ( ! headers_sent() ) {
-				header_remove( 'Last-Modified' );
+				wp_header_remove( 'Last-Modified' );
 			}
 		}
 
 		if ( ! headers_sent() ) {
 			foreach ( (array) $headers as $name => $field_value ) {
-				header( "{$name}: {$field_value}" );
+				wp_header( "{$name}: {$field_value}" );
 			}
 		}
 
 		if ( $exit_required ) {
-			exit;
+			wp_exit();
 		}
 
 		/**
@@ -684,7 +684,7 @@ class WP {
 
 				// Only set X-Pingback for single posts that allow pings.
 				if ( $post && pings_open( $post ) && ! headers_sent() ) {
-					header( 'X-Pingback: ' . get_bloginfo( 'pingback_url', 'display' ) );
+					wp_header( 'X-Pingback: ' . get_bloginfo( 'pingback_url', 'display' ) );
 				}
 
 				// Check for paged content that exceeds the max number of pages.

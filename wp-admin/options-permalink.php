@@ -191,7 +191,7 @@ if ( $structure_updated ) {
 	set_transient( 'settings_errors', get_settings_errors(), 30 );
 
 	wp_redirect( admin_url( 'options-permalink.php?settings-updated=true' ) );
-	exit;
+	wp_exit();
 }
 
 flush_rewrite_rules();

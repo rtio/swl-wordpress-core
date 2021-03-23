@@ -303,7 +303,7 @@ function wp_print_media_templates() {
 				do_action( 'post-upload-ui' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 				?>
 			</div>
-		<?php endif; ?>
+<?php endif; ?>
 		</div>
 	</script>
 

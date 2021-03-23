@@ -144,7 +144,7 @@ function twentythirteen_header_style() {
 		}
 	<?php endif; ?>
 	</style>
-	<?php
+<?php
 }
 
 /**

@@ -25,7 +25,7 @@ get_header(); ?>
 
 				<?php if ( category_description() ) : // Show an optional category description. ?>
 				<div class="archive-meta"><?php echo category_description(); ?></div>
-				<?php endif; ?>
+<?php endif; ?>
 			</header><!-- .archive-header -->
 
 			<?php

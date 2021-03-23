@@ -377,7 +377,7 @@ switch ( $action ) {
 					}
 
 					wp_redirect( admin_url( 'nav-menus.php?menu=' . $_nav_menu_selected_id ) );
-					exit;
+					wp_exit();
 				}
 			} else {
 				$messages[] = '<div id="message" class="error notice is-dismissible"><p>' . __( 'Please enter a valid menu name.' ) . '</p></div>';
@@ -425,7 +425,7 @@ switch ( $action ) {
 				// If the menu ID changed, redirect to the new URL.
 				if ( $nav_menu_selected_id !== $_nav_menu_selected_id ) {
 					wp_redirect( admin_url( 'nav-menus.php?menu=' . (int) $_nav_menu_selected_id ) );
-					exit;
+					wp_exit();
 				}
 			}
 		}
@@ -435,7 +435,7 @@ switch ( $action ) {
 	case 'locations':
 		if ( ! $num_locations ) {
 			wp_redirect( admin_url( 'nav-menus.php' ) );
-			exit;
+			wp_exit();
 		}
 
 		add_filter( 'screen_options_show_screen', '__return_false' );
@@ -818,7 +818,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 		 */
 		do_action( 'after_menu_locations_table' );
 		?>
-	<?php else : ?>
+<?php else : ?>
 	<div class="manage-menus">
 		<?php if ( $menu_count < 1 ) : ?>
 		<span class="first-menu-message">

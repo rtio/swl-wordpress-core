@@ -103,7 +103,7 @@ function setup_config_display_header( $body_classes = array() ) {
 		$dir_attr       = ' dir="rtl"';
 	}
 
-	header( 'Content-Type: text/html; charset=utf-8' );
+	wp_header( 'Content-Type: text/html; charset=utf-8' );
 	?>
 <!DOCTYPE html>
 <html<?php echo $dir_attr; ?>>

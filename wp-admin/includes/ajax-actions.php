@@ -181,10 +181,10 @@ function wp_ajax_wp_compression_test() {
 	}
 
 	if ( isset( $_GET['test'] ) ) {
-		header( 'Expires: Wed, 11 Jan 1984 05:00:00 GMT' );
-		header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
-		header( 'Cache-Control: no-cache, must-revalidate, max-age=0' );
-		header( 'Content-Type: application/javascript; charset=UTF-8' );
+		wp_header( 'Expires: Wed, 11 Jan 1984 05:00:00 GMT' );
+		wp_header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
+		wp_header( 'Cache-Control: no-cache, must-revalidate, max-age=0' );
+		wp_header( 'Content-Type: application/javascript; charset=UTF-8' );
 		$force_gzip = ( defined( 'ENFORCE_GZIP' ) && ENFORCE_GZIP );
 		$test_str   = '"wpCompressionTest Lorem ipsum dolor sit amet consectetuer mollis sapien urna ut a. Eu nonummy condimentum fringilla tempor pretium platea vel nibh netus Maecenas. Hac molestie amet justo quis pellentesque est ultrices interdum nibh Morbi. Cras mattis pretium Phasellus ante ipsum ipsum ut sociis Suspendisse Lorem. Ante et non molestie. Porta urna Vestibulum egestas id congue nibh eu risus gravida sit. Ac augue auctor Ut et non a elit massa id sodales. Elit eu Nulla at nibh adipiscing mattis lacus mauris at tempus. Netus nibh quis suscipit nec feugiat eget sed lorem et urna. Pellentesque lacus at ut massa consectetuer ligula ut auctor semper Pellentesque. Ut metus massa nibh quam Curabitur molestie nec mauris congue. Volutpat molestie elit justo facilisis neque ac risus Ut nascetur tristique. Vitae sit lorem tellus et quis Phasellus lacus tincidunt nunc Fusce. Pharetra wisi Suspendisse mus sagittis libero lacinia Integer consequat ac Phasellus. Et urna ac cursus tortor aliquam Aliquam amet tellus volutpat Vestibulum. Justo interdum condimentum In augue congue tellus sollicitudin Quisque quis nibh."';
 
@@ -197,10 +197,10 @@ function wp_ajax_wp_compression_test() {
 			}
 
 			if ( false !== stripos( $_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate' ) && function_exists( 'gzdeflate' ) && ! $force_gzip ) {
-				header( 'Content-Encoding: deflate' );
+				wp_header( 'Content-Encoding: deflate' );
 				$out = gzdeflate( $test_str, 1 );
 			} elseif ( false !== stripos( $_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip' ) && function_exists( 'gzencode' ) ) {
-				header( 'Content-Encoding: gzip' );
+				wp_header( 'Content-Encoding: gzip' );
 				$out = gzencode( $test_str, 1 );
 			} else {
 				wp_die( -1 );
@@ -2451,7 +2451,7 @@ function wp_ajax_media_create_image_subsizes() {
 	// Set a custom header with the attachment_id.
 	// Used by the browser/client to resume creating image sub-sizes after a PHP fatal error.
 	if ( ! headers_sent() ) {
-		header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
+		wp_header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
 	}
 
 	// This can still be pretty slow and cause timeout or out of memory errors.
@@ -5334,7 +5334,7 @@ function wp_ajax_health_check_get_sizes() {
  * @since 5.3.0
  */
 function wp_ajax_rest_nonce() {
-	exit( wp_create_nonce( 'wp_rest' ) );
+	wp_exit( wp_create_nonce( 'wp_rest' ) );
 }
 
 /**

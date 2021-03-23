@@ -51,7 +51,7 @@ get_header(); ?>
 					</p>
 				</div><!-- .entry-content -->
 
-				<?php
+<?php
 			else :
 				// Show the default message to everyone else.
 				?>
@@ -63,11 +63,11 @@ get_header(); ?>
 					<p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'twentytwelve' ); ?></p>
 					<?php get_search_form(); ?>
 				</div><!-- .entry-content -->
-			<?php endif; // End current_user_can() check. ?>
+<?php endif; // End current_user_can() check. ?>
 
 			</article><!-- #post-0 -->
 
-		<?php endif; // End have_posts() check. ?>
+<?php endif; // End have_posts() check. ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->

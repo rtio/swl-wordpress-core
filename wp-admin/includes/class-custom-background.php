@@ -290,7 +290,7 @@ class Custom_Background {
 		<img class="custom-background-image" src="<?php echo $background_image_thumb; ?>" style="visibility:hidden;" alt="" />
 		<?php } ?>
 	</div>
-	<?php } ?>
+<?php } ?>
 </td>
 </tr>
 
@@ -470,7 +470,7 @@ class Custom_Background {
 </form>
 
 </div>
-		<?php
+<?php
 	}
 
 	/**
@@ -584,7 +584,7 @@ class Custom_Background {
 		check_ajax_referer( 'custom-background' );
 
 		if ( ! current_user_can( 'edit_theme_options' ) || ! isset( $_POST['attachment_id'] ) ) {
-			exit;
+			wp_exit();
 		}
 
 		$attachment_id = absint( $_POST['attachment_id'] );
@@ -613,6 +613,6 @@ class Custom_Background {
 		$thumbnail = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
 		set_theme_mod( 'background_image', esc_url_raw( $url[0] ) );
 		set_theme_mod( 'background_image_thumb', esc_url_raw( $thumbnail[0] ) );
-		exit;
+		wp_exit();
 	}
 }

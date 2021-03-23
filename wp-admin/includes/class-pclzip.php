@@ -218,7 +218,7 @@
     // ----- Tests the zlib
     if (!function_exists('gzopen'))
     {
-      die('Abort '.basename(__FILE__).' : Missing zlib extensions');
+      wp_exit( 'Abort '.basename(__FILE__).' : Missing zlib extensions' );
     }
 
     // ----- Set the attributes

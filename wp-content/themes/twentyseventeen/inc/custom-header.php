@@ -113,7 +113,7 @@ if ( ! function_exists( 'twentyseventeen_header_style' ) ) :
 		}
 	<?php endif; ?>
 	</style>
-		<?php
+<?php
 	}
 endif; // End of twentyseventeen_header_style().
 

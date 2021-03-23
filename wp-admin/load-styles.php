@@ -33,8 +33,8 @@ $load = preg_replace( '/[^a-z0-9,_-]+/i', '', $load );
 $load = array_unique( explode( ',', $load ) );
 
 if ( empty( $load ) ) {
-	header( "$protocol 400 Bad Request" );
-	exit;
+	header("$protocol 400 Bad Request");
+	exit();
 }
 
 $rtl            = ( isset( $_GET['dir'] ) && 'rtl' === $_GET['dir'] );
@@ -45,8 +45,8 @@ $wp_styles = new WP_Styles();
 wp_default_styles( $wp_styles );
 
 if ( isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) && stripslashes( $_SERVER['HTTP_IF_NONE_MATCH'] ) === $wp_version ) {
-	header( "$protocol 304 Not Modified" );
-	exit;
+	header("$protocol 304 Not Modified");
+	exit();
 }
 
 foreach ( $load as $handle ) {
@@ -85,4 +85,4 @@ header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expires_offset ) . ' G
 header( "Cache-Control: public, max-age=$expires_offset" );
 
 echo $out;
-exit;
+exit();

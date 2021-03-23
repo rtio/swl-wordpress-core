@@ -785,7 +785,7 @@ class WP_Image_Editor_Imagick extends WP_Image_Editor {
 			$this->image->setImageFormat( strtoupper( $extension ) );
 
 			// Output stream of image content.
-			header( "Content-Type: $mime_type" );
+			wp_header( "Content-Type: $mime_type" );
 			print $this->image->getImageBlob();
 
 			// Reset image to original format.

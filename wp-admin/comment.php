@@ -100,18 +100,18 @@ switch ( $action ) {
 
 		if ( ! $comment ) {
 			wp_redirect( admin_url( 'edit-comments.php?error=1' ) );
-			die();
+			wp_exit();
 		}
 
 		if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) ) {
 			wp_redirect( admin_url( 'edit-comments.php?error=2' ) );
-			die();
+			wp_exit();
 		}
 
 		// No need to re-approve/re-trash/re-spam a comment.
 		if ( str_replace( '1', 'approve', $comment->comment_approved ) === $action ) {
 			wp_redirect( admin_url( 'edit-comments.php?same=' . $comment_id ) );
-			die();
+			wp_exit();
 		}
 
 		require_once ABSPATH . 'wp-admin/admin-header.php';
@@ -335,7 +335,7 @@ switch ( $action ) {
 		}
 
 		wp_redirect( $redir );
-		die;
+		wp_exit();
 
 	case 'editedcomment':
 		$comment_id      = absint( $_POST['comment_ID'] );
@@ -361,7 +361,7 @@ switch ( $action ) {
 		$location = apply_filters( 'comment_edit_redirect', $location, $comment_id );
 
 		wp_redirect( $location );
-		exit;
+		wp_exit();
 
 	default:
 		wp_die( __( 'Unknown action.' ) );

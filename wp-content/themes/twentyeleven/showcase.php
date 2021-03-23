@@ -169,8 +169,8 @@ get_header(); ?>
 					</nav>
 					<?php endif; // End check for more than one sticky post. ?>
 					</div><!-- .featured-posts -->
-					<?php endif; // End check for published posts. ?>
-				<?php endif; // End check for sticky posts. ?>
+<?php endif; // End check for published posts. ?>
+<?php endif; // End check for sticky posts. ?>
 
 				<section class="recent-posts">
 					<h1 class="showcase-heading"><?php _e( 'Recent Posts', 'twentyeleven' ); ?></h1>

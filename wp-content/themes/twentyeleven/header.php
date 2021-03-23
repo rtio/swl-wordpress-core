@@ -125,7 +125,7 @@ if ( is_singular() && get_option( 'thread_comments' ) ) {
 				} // End check for featured image or standard header.
 				?>
 			</a>
-			<?php endif; // End check for removed header image. ?>
+<?php endif; // End check for removed header image. ?>
 
 			<?php
 				// Has the text been hidden?

@@ -38,5 +38,5 @@ $header_class = $show_title ? 'site-title' : 'screen-reader-text';
 		<p class="site-description">
 			<?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</p>
-	<?php endif; ?>
+<?php endif; ?>
 </div><!-- .site-branding -->

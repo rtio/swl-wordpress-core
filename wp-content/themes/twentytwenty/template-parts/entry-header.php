@@ -63,7 +63,7 @@ if ( is_singular() ) {
 				<?php the_excerpt(); ?>
 			</div>
 
-			<?php
+<?php
 		}
 
 		// Default to displaying the post meta.

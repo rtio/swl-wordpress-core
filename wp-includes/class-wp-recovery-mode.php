@@ -231,7 +231,7 @@ class WP_Recovery_Mode {
 
 		if ( ! $this->is_active() ) {
 			wp_safe_redirect( $redirect_to );
-			die;
+			wp_exit();
 		}
 
 		if ( ! isset( $_GET['action'] ) || self::EXIT_ACTION !== $_GET['action'] ) {
@@ -247,7 +247,7 @@ class WP_Recovery_Mode {
 		}
 
 		wp_safe_redirect( $redirect_to );
-		die;
+		wp_exit();
 	}
 
 	/**
@@ -465,6 +465,6 @@ class WP_Recovery_Mode {
 
 		$url = "{$scheme}{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 		wp_safe_redirect( $url );
-		exit;
+		wp_exit();
 	}
 }

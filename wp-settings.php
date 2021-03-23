@@ -564,7 +564,7 @@ if ( is_multisite() ) {
 	$file = ms_site_check();
 	if ( true !== $file ) {
 		require $file;
-		die();
+		wp_exit();
 	}
 	unset( $file );
 }

@@ -745,7 +745,7 @@ function set_screen_options() {
 		}
 
 		wp_safe_redirect( $url );
-		exit;
+		wp_exit();
 	}
 }
 
@@ -1307,7 +1307,7 @@ function wp_admin_headers() {
 	 */
 	$policy = apply_filters( 'admin_referrer_policy', $policy );
 
-	header( sprintf( 'Referrer-Policy: %s', $policy ) );
+	wp_header( sprintf( 'Referrer-Policy: %s', $policy ) );
 }
 
 /**

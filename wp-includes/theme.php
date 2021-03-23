@@ -1832,7 +1832,7 @@ function wp_custom_css_cb() {
 		<style<?php echo $type_attr; ?> id="wp-custom-css">
 			<?php echo strip_tags( $styles ); // Note that esc_html() cannot be used because `div &gt; span` is not interpreted properly. ?>
 		</style>
-		<?php
+<?php
 	endif;
 }
 

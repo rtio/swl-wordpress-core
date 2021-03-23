@@ -68,8 +68,8 @@ if ( file_exists( ABSPATH . 'wp-config.php' ) ) {
 	 * we're traveling in circles, our last-ditch effort is "Need more help?"
 	 */
 	if ( false === strpos( $_SERVER['REQUEST_URI'], 'setup-config' ) ) {
-		header( 'Location: ' . $path );
-		exit;
+		wp_header( 'Location: ' . $path );
+		wp_exit();
 	}
 
 	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );

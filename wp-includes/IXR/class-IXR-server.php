@@ -41,10 +41,10 @@ class IXR_Server
             if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
                 if ( function_exists( 'status_header' ) ) {
                     status_header( 405 ); // WP #20986
-                    header( 'Allow: POST' );
+                    wp_header( 'Allow: POST' );
                 }
-                header('Content-Type: text/plain'); // merged from WP #9093
-                die('XML-RPC server accepts POST requests only.');
+                wp_header( 'Content-Type: text/plain' ); // merged from WP #9093
+                wp_exit( 'XML-RPC server accepts POST requests only.' );
             }
 
             $data = file_get_contents('php://input');
@@ -145,14 +145,14 @@ EOD;
         else
             $xml = '<?xml version="1.0"?>'."\n".$xml;
         $length = strlen($xml);
-        header('Connection: close');
+        wp_header( 'Connection: close' );
         if ($charset)
-            header('Content-Type: text/xml; charset='.$charset);
+            wp_header( 'Content-Type: text/xml; charset='.$charset );
         else
-            header('Content-Type: text/xml');
-        header('Date: '.gmdate('r'));
+            wp_header( 'Content-Type: text/xml' );
+        wp_header( 'Date: '.gmdate('r') );
         echo $xml;
-        exit;
+        wp_exit();
     }
 
     function hasMethod($method)

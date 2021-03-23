@@ -93,9 +93,9 @@ function export_wp( $args = array() ) {
 	 */
 	$filename = apply_filters( 'export_wp_filename', $wp_filename, $sitename, $date );
 
-	header( 'Content-Description: File Transfer' );
-	header( 'Content-Disposition: attachment; filename=' . $filename );
-	header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+	wp_header( 'Content-Description: File Transfer' );
+	wp_header( 'Content-Disposition: attachment; filename=' . $filename );
+	wp_header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
 
 	if ( 'all' !== $args['content'] && post_type_exists( $args['content'] ) ) {
 		$ptype = get_post_type_object( $args['content'] );

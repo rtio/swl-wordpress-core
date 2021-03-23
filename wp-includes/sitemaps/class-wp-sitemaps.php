@@ -184,7 +184,7 @@ class WP_Sitemaps {
 			$stylesheet = new WP_Sitemaps_Stylesheet();
 
 			$stylesheet->render_stylesheet( $stylesheet_type );
-			exit;
+			wp_exit();
 		}
 
 		// Render the index.
@@ -192,7 +192,7 @@ class WP_Sitemaps {
 			$sitemap_list = $this->index->get_sitemap_list();
 
 			$this->renderer->render_index( $sitemap_list );
-			exit;
+			wp_exit();
 		}
 
 		$provider = $this->registry->get_provider( $sitemap );
@@ -215,7 +215,7 @@ class WP_Sitemaps {
 		}
 
 		$this->renderer->render_sitemap( $url_list );
-		exit;
+		wp_exit();
 	}
 
 	/**
@@ -238,7 +238,7 @@ class WP_Sitemaps {
 			|| 'sitemap-xml' === $query->get( 'name' )
 		) {
 			wp_safe_redirect( $this->index->get_index_url() );
-			exit();
+			wp_exit();
 		}
 
 		return $bypass;

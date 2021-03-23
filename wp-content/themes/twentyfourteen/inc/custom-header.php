@@ -89,7 +89,7 @@ if ( ! function_exists( 'twentyfourteen_header_style' ) ) :
 		}
 	<?php endif; ?>
 	</style>
-		<?php
+<?php
 	}
 endif; // twentyfourteen_header_style()
 

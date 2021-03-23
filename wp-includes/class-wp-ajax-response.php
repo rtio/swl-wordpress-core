@@ -149,7 +149,7 @@ class WP_Ajax_Response {
 	 * @since 2.1.0
 	 */
 	public function send() {
-		header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ) );
+		wp_header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ) );
 		echo "<?xml version='1.0' encoding='" . get_option( 'blog_charset' ) . "' standalone='yes'?><wp_ajax>";
 		foreach ( (array) $this->responses as $response ) {
 			echo $response;
@@ -158,7 +158,7 @@ class WP_Ajax_Response {
 		if ( wp_doing_ajax() ) {
 			wp_die();
 		} else {
-			die();
+			wp_exit();
 		}
 	}
 }
