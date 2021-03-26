@@ -23,7 +23,7 @@ if ( ! defined( 'WP_USER_ADMIN' ) ) {
 	define( 'WP_USER_ADMIN', false );
 }
 
-if ( ! WP_NETWORK_ADMIN && ! WP_USER_ADMIN ) {
+if ( ! WP_NETWORK_ADMIN && ! WP_USER_ADMIN && ! defined( 'WP_BLOG_ADMIN' ) ) {
 	define( 'WP_BLOG_ADMIN', true );
 }
 
@@ -236,7 +236,7 @@ if ( isset( $plugin_page ) ) {
 		 */
 		do_action( "load-{$page_hook}" ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 		if ( ! isset( $_GET['noheader'] ) ) {
-			require_once ABSPATH . 'wp-admin/admin-header.php';
+			require ABSPATH . 'wp-admin/admin-header.php';
 		}
 
 		/**
@@ -284,7 +284,7 @@ if ( isset( $plugin_page ) ) {
 		do_action( "load-{$plugin_page}" ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 		if ( ! isset( $_GET['noheader'] ) ) {
-			require_once ABSPATH . 'wp-admin/admin-header.php';
+			require ABSPATH . 'wp-admin/admin-header.php';
 		}
 
 		if ( file_exists( WPMU_PLUGIN_DIR . "/$plugin_page" ) ) {
@@ -294,7 +294,7 @@ if ( isset( $plugin_page ) ) {
 		}
 	}
 
-	require_once ABSPATH . 'wp-admin/admin-footer.php';
+	require ABSPATH . 'wp-admin/admin-footer.php';
 
 	wp_exit();
 } elseif ( isset( $_GET['import'] ) ) {
@@ -329,7 +329,7 @@ if ( isset( $plugin_page ) ) {
 	$title        = __( 'Import' );
 
 	if ( ! isset( $_GET['noheader'] ) ) {
-		require_once ABSPATH . 'wp-admin/admin-header.php';
+		require ABSPATH . 'wp-admin/admin-header.php';
 	}
 
 	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -352,7 +352,7 @@ if ( isset( $plugin_page ) ) {
 
 	call_user_func( $wp_importers[ $importer ][2] );
 
-	require_once ABSPATH . 'wp-admin/admin-footer.php';
+	require ABSPATH . 'wp-admin/admin-footer.php';
 
 	// Make sure rules are flushed.
 	flush_rewrite_rules( false );

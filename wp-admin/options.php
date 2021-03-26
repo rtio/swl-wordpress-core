@@ -342,7 +342,7 @@ if ( 'update' === $action ) { // We are saving settings sent from a settings pag
 	wp_exit();
 }
 
-require_once ABSPATH . 'wp-admin/admin-header.php'; ?>
+require ABSPATH . 'wp-admin/admin-header.php'; ?>
 
 <div class="wrap">
 	<h1><?php esc_html_e( 'All Settings' ); ?></h1>
@@ -405,4 +405,4 @@ foreach ( (array) $options as $option ) :
 </div>
 
 <?php
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+require ABSPATH . 'wp-admin/admin-footer.php';

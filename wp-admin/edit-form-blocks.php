@@ -447,7 +447,7 @@ $script = sprintf(
 );
 wp_add_inline_script( 'wp-edit-post', $script );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 ?>
 
 <div class="block-editor">

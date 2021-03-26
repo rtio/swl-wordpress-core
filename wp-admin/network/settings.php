@@ -135,7 +135,7 @@ if ( $_POST ) {
 	wp_exit();
 }
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 
 if ( isset( $_GET['updated'] ) ) {
 	?><div id="message" class="updated notice is-dismissible"><p><?php _e( 'Settings saved.' ); ?></p></div>
@@ -503,4 +503,4 @@ if ( isset( $_GET['updated'] ) ) {
 	</form>
 </div>
 
-<?php require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
+<?php require ABSPATH . 'wp-admin/admin-footer.php'; ?>

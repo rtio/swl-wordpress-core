@@ -53,7 +53,7 @@ add_thickbox();
 wp_enqueue_script( 'plugin-install' );
 wp_enqueue_script( 'updates' );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 $parent_file = 'tools.php';
 ?>
 
@@ -237,4 +237,4 @@ if ( current_user_can( 'install_plugins' ) ) {
 wp_print_request_filesystem_credentials_modal();
 wp_print_admin_notice_templates();
 
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+require ABSPATH . 'wp-admin/admin-footer.php';

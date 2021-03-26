@@ -97,7 +97,7 @@ switch ( $action ) {
 			'<p>' . __( '<a href="https://wordpress.org/support/">Support</a>' ) . '</p>'
 		);
 
-		require_once ABSPATH . 'wp-admin/admin-header.php';
+		require ABSPATH . 'wp-admin/admin-header.php';
 
 		$parent_file = 'upload.php';
 		$message     = '';
@@ -166,7 +166,7 @@ switch ( $action ) {
 
 		<?php
 
-		require_once ABSPATH . 'wp-admin/admin-footer.php';
+		require ABSPATH . 'wp-admin/admin-footer.php';
 
 		wp_exit();
 

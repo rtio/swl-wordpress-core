@@ -660,7 +660,7 @@ get_current_screen()->set_help_sidebar(
 );
 
 // Get the admin header.
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="wrap">
 	<h1 class="wp-heading-inline"><?php echo esc_html( __( 'Menus' ) ); ?></h1>
@@ -1109,4 +1109,4 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 	</div><!-- /#nav-menus-frame -->
 	<?php endif; ?>
 </div><!-- /.wrap-->
-<?php require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
+<?php require ABSPATH . 'wp-admin/admin-footer.php'; ?>

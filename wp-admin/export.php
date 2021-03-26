@@ -122,7 +122,7 @@ if ( isset( $_GET['download'] ) ) {
 	wp_exit();
 }
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 
 /**
  * Create the date options fields for exporting a given post type.
@@ -321,4 +321,4 @@ do_action( 'export_filters' );
 </form>
 </div>
 
-<?php require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
+<?php require ABSPATH . 'wp-admin/admin-footer.php'; ?>

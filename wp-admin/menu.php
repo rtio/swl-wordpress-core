@@ -211,17 +211,14 @@ unset( $appearance_cap );
 
 // Add 'Theme Editor' to the bottom of the Appearance menu.
 if ( ! is_multisite() ) {
-	add_action( 'admin_menu', '_add_themes_utility_last', 101 );
-}
-/**
- * Adds the 'Theme Editor' link to the bottom of the Appearance menu.
- *
- * @access private
- * @since 3.0.0
- */
-function _add_themes_utility_last() {
-	// Must use API on the admin_menu hook, direct modification is only possible on/before the _admin_menu hook.
-	add_submenu_page( 'themes.php', __( 'Theme Editor' ), __( 'Theme Editor' ), 'edit_themes', 'theme-editor.php' );
+	add_action(
+		'admin_menu',
+		function() {
+			// Must use API on the admin_menu hook, direct modification is only possible on/before the _admin_menu hook.
+			add_submenu_page( 'themes.php', __( 'Theme Editor' ), __( 'Theme Editor' ), 'edit_themes', 'theme-editor.php' );
+		},
+		101
+	);
 }
 
 $count = '';
@@ -324,4 +321,4 @@ $compat = array(
 	'themes'          => 'appearance',
 );
 
-require_once ABSPATH . 'wp-admin/includes/menu.php';
+require ABSPATH . 'wp-admin/includes/menu.php';

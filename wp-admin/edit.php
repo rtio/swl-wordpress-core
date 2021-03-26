@@ -7,7 +7,7 @@
  */
 
 /** WordPress Administration Bootstrap */
-require_once __DIR__ . '/admin.php';
+require __DIR__ . '/admin.php';
 
 if ( ! $typenow ) {
 	wp_die( __( 'Invalid post type.' ) );
@@ -391,7 +391,7 @@ $bulk_messages['wp_block'] = array(
 $bulk_messages = apply_filters( 'bulk_post_updated_messages', $bulk_messages, $bulk_counts );
 $bulk_counts   = array_filter( $bulk_counts );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="wrap">
 <h1 class="wp-heading-inline">
@@ -486,4 +486,4 @@ if ( $wp_list_table->has_items() ) {
 </div>
 
 <?php
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+require ABSPATH . 'wp-admin/admin-footer.php';

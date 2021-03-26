@@ -51,7 +51,7 @@ $health_check_site_status = WP_Site_Health::get_instance();
 // Start by checking if this is a special request checking for the existence of certain filters.
 $health_check_site_status->check_wp_version_check_exists();
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="health-check-header">
 	<div class="health-check-title-section">
@@ -194,4 +194,4 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 </script>
 
 <?php
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+require ABSPATH . 'wp-admin/admin-footer.php';

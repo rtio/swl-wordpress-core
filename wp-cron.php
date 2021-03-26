@@ -28,8 +28,8 @@ if ( function_exists( 'fastcgi_finish_request' ) && version_compare( phpversion(
 	fastcgi_finish_request();
 }
 
-if ( ! empty( $_POST ) || defined( 'DOING_AJAX' ) || defined( 'DOING_CRON' ) ) {
-	wp_exit();
+if ( ! empty( $_POST ) || defined( 'DOING_AJAX' ) ) {
+	exit();
 }
 
 /**
@@ -148,5 +148,3 @@ foreach ( $crons as $timestamp => $cronhooks ) {
 if ( _get_cron_lock() === $doing_wp_cron ) {
 	delete_transient( 'doing_cron' );
 }
-
-wp_exit();

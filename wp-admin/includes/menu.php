@@ -6,6 +6,8 @@
  * @subpackage Administration
  */
 
+require_once ABSPATH . 'wp-admin/includes/menu-functions.php';
+
 if ( is_network_admin() ) {
 
 	/**
@@ -186,65 +188,6 @@ foreach ( $menu as $id => $data ) {
 }
 unset( $id, $data, $subs, $first_sub );
 
-/**
- * @param string $add
- * @param string $class
- * @return string
- */
-function add_cssclass( $add, $class ) {
-	$class = empty( $class ) ? $add : $class .= ' ' . $add;
-	return $class;
-}
-
-/**
- * @param array $menu
- * @return array
- */
-function add_menu_classes( $menu ) {
-	$first     = false;
-	$lastorder = false;
-	$i         = 0;
-	$mc        = count( $menu );
-	foreach ( $menu as $order => $top ) {
-		$i++;
-
-		if ( 0 == $order ) { // Dashboard is always shown/single.
-			$menu[0][4] = add_cssclass( 'menu-top-first', $top[4] );
-			$lastorder  = 0;
-			continue;
-		}
-
-		if ( 0 === strpos( $top[2], 'separator' ) && false !== $lastorder ) { // If separator.
-			$first                 = true;
-			$c                     = $menu[ $lastorder ][4];
-			$menu[ $lastorder ][4] = add_cssclass( 'menu-top-last', $c );
-			continue;
-		}
-
-		if ( $first ) {
-			$c                 = $menu[ $order ][4];
-			$menu[ $order ][4] = add_cssclass( 'menu-top-first', $c );
-			$first             = false;
-		}
-
-		if ( $mc == $i ) { // Last item.
-			$c                 = $menu[ $order ][4];
-			$menu[ $order ][4] = add_cssclass( 'menu-top-last', $c );
-		}
-
-		$lastorder = $order;
-	}
-
-	/**
-	 * Filters administration menus array with classes added for top-level items.
-	 *
-	 * @since 2.7.0
-	 *
-	 * @param array $menu Associative array of administration menu items.
-	 */
-	return apply_filters( 'add_menu_classes', $menu );
-}
-
 uksort( $menu, 'strnatcasecmp' ); // Make it all pretty.
 
 /**
@@ -280,16 +223,7 @@ if ( apply_filters( 'custom_menu_order', false ) ) {
 	$menu_order         = array_flip( $menu_order );
 	$default_menu_order = array_flip( $default_menu_order );
 
-	/**
-	 * @global array $menu_order
-	 * @global array $default_menu_order
-	 *
-	 * @param array $a
-	 * @param array $b
-	 * @return int
-	 */
-	function sort_menu( $a, $b ) {
-		global $menu_order, $default_menu_order;
+	usort( $menu, function ( $a, $b ) use ( $menu_order, $default_menu_order ) {
 		$a = $a[2];
 		$b = $b[2];
 		if ( isset( $menu_order[ $a ] ) && ! isset( $menu_order[ $b ] ) ) {
@@ -304,9 +238,7 @@ if ( apply_filters( 'custom_menu_order', false ) ) {
 		} else {
 			return ( $default_menu_order[ $a ] <= $default_menu_order[ $b ] ) ? -1 : 1;
 		}
-	}
-
-	usort( $menu, 'sort_menu' );
+	} );
 	unset( $menu_order, $default_menu_order );
 }
 

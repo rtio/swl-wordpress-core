@@ -28,7 +28,7 @@ add_filter(
 
 wp_enqueue_script( 'privacy-tools' );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 
 ?>
 <div class="privacy-settings-header">
@@ -90,4 +90,4 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 </div>
 <?php
 
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+require ABSPATH . 'wp-admin/admin-footer.php';

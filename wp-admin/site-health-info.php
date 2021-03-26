@@ -27,7 +27,7 @@ if ( ! class_exists( 'WP_Site_Health' ) ) {
 
 $health_check_site_status = WP_Site_Health::get_instance();
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="health-check-header">
 	<div class="health-check-title-section">
@@ -181,4 +181,4 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 </div>
 
 <?php
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+require ABSPATH . 'wp-admin/admin-footer.php';

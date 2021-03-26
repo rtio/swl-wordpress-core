@@ -205,7 +205,7 @@ get_current_screen()->set_screen_reader_content(
 	)
 );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+require ABSPATH . 'wp-admin/admin-header.php';
 ?>
 
 <div class="wrap">
@@ -351,4 +351,4 @@ if ( isset( $_REQUEST['approved'] ) || isset( $_REQUEST['deleted'] ) || isset( $
 <?php
 wp_comment_reply( '-1', true, 'detail' );
 wp_comment_trashnotice();
-require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
+require ABSPATH . 'wp-admin/admin-footer.php'; ?>
